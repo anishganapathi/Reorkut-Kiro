@@ -84,7 +84,7 @@ const PostCreationForm = ({ postText, onPostChange, onPost, onCancel }) => (
 const LuckyDayFortune = () => (
     <div className="lucky-day-fortune">
         <div className="fortune-icon">
-            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=50&h=50&fit=crop" alt="Fortune" />
+            <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=1640&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Fortune" />
         </div>
         <div className="fortune-content">
             <h3>Your lucky day ( December 1st )</h3>

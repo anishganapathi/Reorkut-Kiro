@@ -1,6 +1,6 @@
 -- ============================================
--- COMPLETE ORKUT DATABASE SCHEMA
--- Run this ONCE to set up everything
+-- COMPLETE ORKUT DATABASE SETUP
+-- Run this script in Supabase SQL Editor to set up the entire database
 -- ============================================
 
 -- ============================================
@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS scraps (
   receiver_id uuid NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
   content text NOT NULL,
   is_private boolean DEFAULT false,
+  parent_scrap_id uuid REFERENCES scraps(id) ON DELETE CASCADE,
   created_at timestamptz DEFAULT now() NOT NULL
 );
 
@@ -84,10 +85,10 @@ CREATE TABLE IF NOT EXISTS friend_requests (
 -- Create testimonials table
 CREATE TABLE IF NOT EXISTS testimonials (
   id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
-  sender_id uuid NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
-  receiver_id uuid NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  author_id uuid NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  user_id uuid NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
   content text NOT NULL,
-  rating text,
+  status text DEFAULT 'pending',
   created_at timestamptz DEFAULT now() NOT NULL
 );
 
@@ -106,7 +107,7 @@ CREATE TABLE IF NOT EXISTS messages (
 CREATE TABLE IF NOT EXISTS profile_visits (
   id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
   visitor_id uuid NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
-  visited_id uuid NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  profile_id uuid NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
   visited_at timestamptz DEFAULT now() NOT NULL
 );
 
@@ -123,15 +124,17 @@ CREATE TABLE IF NOT EXISTS photo_albums (
   created_at timestamptz DEFAULT now() NOT NULL
 );
 
--- Create photos table
+-- Create photos table (basic structure first)
 CREATE TABLE IF NOT EXISTS photos (
   id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
-  album_id uuid NOT NULL REFERENCES photo_albums(id) ON DELETE CASCADE,
-  user_id uuid NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
-  url text NOT NULL,
-  caption text,
   created_at timestamptz DEFAULT now() NOT NULL
 );
+
+-- Add columns to photos table safely (in case table already exists)
+ALTER TABLE photos ADD COLUMN IF NOT EXISTS album_id uuid REFERENCES photo_albums(id) ON DELETE CASCADE;
+ALTER TABLE photos ADD COLUMN IF NOT EXISTS user_id uuid REFERENCES profiles(id) ON DELETE CASCADE;
+ALTER TABLE photos ADD COLUMN IF NOT EXISTS url text;
+ALTER TABLE photos ADD COLUMN IF NOT EXISTS caption text;
 
 -- ============================================
 -- VIDEOS TABLE
@@ -143,10 +146,12 @@ CREATE TABLE IF NOT EXISTS videos (
   user_id uuid NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
   title text NOT NULL,
   url text NOT NULL,
-  thumbnail text,
   views int DEFAULT 0,
   created_at timestamptz DEFAULT now() NOT NULL
 );
+
+-- Add thumbnail column safely (in case table already exists)
+ALTER TABLE videos ADD COLUMN IF NOT EXISTS thumbnail text;
 
 -- ============================================
 -- ENABLE ROW LEVEL SECURITY
@@ -303,6 +308,7 @@ CREATE POLICY "friend_requests_delete_policy"
 
 DROP POLICY IF EXISTS "testimonials_select_policy" ON testimonials;
 DROP POLICY IF EXISTS "testimonials_insert_policy" ON testimonials;
+DROP POLICY IF EXISTS "testimonials_update_policy" ON testimonials;
 DROP POLICY IF EXISTS "testimonials_delete_policy" ON testimonials;
 
 CREATE POLICY "testimonials_select_policy"
@@ -312,12 +318,17 @@ CREATE POLICY "testimonials_select_policy"
 CREATE POLICY "testimonials_insert_policy"
   ON testimonials FOR INSERT
   TO authenticated
-  WITH CHECK (auth.uid() = sender_id);
+  WITH CHECK (auth.uid() = author_id);
+
+CREATE POLICY "testimonials_update_policy"
+  ON testimonials FOR UPDATE
+  TO authenticated
+  USING (auth.uid() = user_id);
 
 CREATE POLICY "testimonials_delete_policy"
   ON testimonials FOR DELETE
   TO authenticated
-  USING (auth.uid() = sender_id OR auth.uid() = receiver_id);
+  USING (auth.uid() = author_id OR auth.uid() = user_id);
 
 -- ============================================
 -- RLS POLICIES - MESSAGES
@@ -358,7 +369,7 @@ DROP POLICY IF EXISTS "profile_visits_insert_policy" ON profile_visits;
 CREATE POLICY "profile_visits_select_policy"
   ON profile_visits FOR SELECT
   TO authenticated
-  USING (auth.uid() = visited_id);
+  USING (auth.uid() = profile_id);
 
 CREATE POLICY "profile_visits_insert_policy"
   ON profile_visits FOR INSERT
@@ -464,13 +475,13 @@ CREATE INDEX IF NOT EXISTS friendships_user_idx ON friendships(user_id);
 CREATE INDEX IF NOT EXISTS friendships_friend_idx ON friendships(friend_id);
 CREATE INDEX IF NOT EXISTS friend_requests_sender_idx ON friend_requests(sender_id);
 CREATE INDEX IF NOT EXISTS friend_requests_receiver_idx ON friend_requests(receiver_id);
-CREATE INDEX IF NOT EXISTS testimonials_sender_idx ON testimonials(sender_id);
-CREATE INDEX IF NOT EXISTS testimonials_receiver_idx ON testimonials(receiver_id);
+CREATE INDEX IF NOT EXISTS testimonials_author_idx ON testimonials(author_id);
+CREATE INDEX IF NOT EXISTS testimonials_user_idx ON testimonials(user_id);
 CREATE INDEX IF NOT EXISTS messages_sender_idx ON messages(sender_id);
 CREATE INDEX IF NOT EXISTS messages_receiver_idx ON messages(receiver_id);
 CREATE INDEX IF NOT EXISTS messages_created_at_idx ON messages(created_at DESC);
 CREATE INDEX IF NOT EXISTS profile_visits_visitor_idx ON profile_visits(visitor_id);
-CREATE INDEX IF NOT EXISTS profile_visits_visited_idx ON profile_visits(visited_id);
+CREATE INDEX IF NOT EXISTS profile_visits_profile_idx ON profile_visits(profile_id);
 CREATE INDEX IF NOT EXISTS photo_albums_user_idx ON photo_albums(user_id);
 CREATE INDEX IF NOT EXISTS photos_album_idx ON photos(album_id);
 CREATE INDEX IF NOT EXISTS photos_user_idx ON photos(user_id);
@@ -543,7 +554,13 @@ ON storage.objects FOR DELETE
 USING ( bucket_id = 'photos' AND auth.role() = 'authenticated' );
 
 -- ============================================
+-- RELOAD SCHEMA CACHE
+-- ============================================
+
+NOTIFY pgrst, 'reload schema';
+
+-- ============================================
 -- VERIFICATION
 -- ============================================
 
-SELECT 'Database setup complete! All tables created successfully.' as status;
+SELECT 'Database setup complete! All tables, policies, and storage buckets created successfully.' as status;

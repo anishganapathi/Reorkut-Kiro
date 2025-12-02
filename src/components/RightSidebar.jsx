@@ -62,9 +62,10 @@ function RightSidebar() {
                                 <div key={friend.id} className="friend-item-sidebar">
                                     <Link to={`/profile/${friend.id}`}>
                                         <img
-                                            src={friend.image || 'https://via.placeholder.com/50'}
+                                            src={friend.image || api.DEFAULT_AVATAR}
                                             alt={friend.name}
                                             className="friend-avatar-sidebar"
+                                            onError={(e) => { e.target.onerror = null; e.target.src = api.DEFAULT_AVATAR }}
                                         />
                                     </Link>
                                     <Link to={`/profile/${friend.id}`} className="friend-name-sidebar">

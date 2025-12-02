@@ -1,7 +1,7 @@
 import { supabase } from './client'
 
 // --- Constants ---
-export const DEFAULT_AVATAR = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'
+export const DEFAULT_AVATAR = '/default_avatar.png'
 
 // --- Auth ---
 export const signUp = async ({ email, password, name, birthDate, gender, country, city }) => {
