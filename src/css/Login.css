@@ -1,0 +1,223 @@
+/* Login Page Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #d4dded;
+    /* Light blue background */
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.login-content {
+    display: flex;
+    width: 800px;
+    background-color: #fff;
+    /* White background for the main container */
+    padding: 20px;
+    /* No border radius in original orkut login usually, but let's keep it sharp */
+}
+
+/* Left Column */
+.login-left {
+    flex: 1;
+    padding-right: 20px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-logo-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.orkut-logo-text {
+    font-family: Arial, Helvetica, sans-serif;
+    /* Or a specific logo font if available */
+    font-size: 72px;
+    font-weight: bold;
+    color: #ff0084;
+    /* Orkut Pink */
+    letter-spacing: -2px;
+}
+
+.login-description {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+    padding: 0 20px;
+}
+
+.login-description p {
+    margin-bottom: 10px;
+}
+
+.highlight-pink {
+    color: #ff0084;
+    font-weight: bold;
+}
+
+/* Right Column */
+.login-right {
+    width: 300px;
+    background-color: #e5eef9;
+    /* Light blue box background */
+    padding: 15px;
+    border: 1px solid #c5d0dc;
+}
+
+.login-box {
+    margin-bottom: 15px;
+}
+
+.login-heading {
+    color: #0041d4;
+    /* Orkut Blue */
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 11px;
+    color: #333;
+    margin-bottom: 2px;
+    text-align: right;
+    /* Labels aligned right in original? Let's check screenshot. No, left aligned but small */
+}
+
+.form-group input {
+    width: 100%;
+    padding: 3px;
+    border: 1px solid #999;
+    font-size: 12px;
+}
+
+.input-hint {
+    font-size: 10px;
+    color: #666;
+    margin-top: 2px;
+}
+
+.login-error {
+    color: red;
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+.form-check {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.form-check input {
+    margin-right: 5px;
+    margin-top: 2px;
+}
+
+.form-check label {
+    font-size: 11px;
+    color: #333;
+    line-height: 1.2;
+}
+
+.form-check .note {
+    display: block;
+    color: #666;
+    font-size: 10px;
+}
+
+.form-actions {
+    text-align: center;
+    /* Button centered? Screenshot shows it left aligned or centered */
+    margin-bottom: 10px;
+}
+
+.btn-enter {
+    background: linear-gradient(to bottom, #f9f9f9, #e0e0e0);
+    border: 1px solid #999;
+    padding: 2px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+}
+
+.btn-enter:hover {
+    background: linear-gradient(to bottom, #fff, #eee);
+}
+
+.forgot-password {
+    text-align: center;
+    font-size: 11px;
+}
+
+.forgot-password a {
+    color: #0041d4;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+/* Signup Box */
+.signup-box {
+    background-color: #e5eef9;
+    /* Same as login box */
+    border-top: 1px solid #c5d0dc;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.signup-box p {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    margin: 0 0 5px 0;
+}
+
+.join-now-link {
+    font-size: 12px;
+    font-weight: bold;
+    color: #0041d4;
+    text-decoration: none;
+}
+
+.join-now-link:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+.login-footer {
+    margin-top: 20px;
+    font-size: 11px;
+    color: #666;
+    text-align: center;
+}
+
+.login-footer a {
+    color: #0041d4;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}

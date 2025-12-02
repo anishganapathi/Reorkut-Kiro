@@ -1,0 +1,255 @@
+/* Global App Layout */
+.app-container {
+    min-height: 100vh;
+    background-color: #d4dded;
+    /* Orkut Light Blue Background */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    max-width: 980px;
+    /* Standard width for old websites */
+    margin: 10px auto;
+    gap: 10px;
+    padding: 0 10px;
+}
+
+/* Sidebar Columns */
+.sidebar-container,
+.right-sidebar-container {
+    width: 200px;
+    /* Fixed width for sidebars */
+    flex-shrink: 0;
+}
+
+/* Main Content Area */
+.content-area {
+    flex: 1;
+    /* Takes remaining space */
+    min-width: 0;
+    /* Prevents overflow */
+}
+
+/* Content Boxes (Used in MainContent and Sidebars) */
+.content-box {
+    background-color: #fff;
+    border-radius: 5px;
+    /* Rounded corners */
+    margin-bottom: 10px;
+    overflow: hidden;
+    /* For rounded corners */
+}
+
+.box-header {
+    background-color: #e5eef9;
+    /* Light blue header background */
+    padding: 5px 10px;
+    border-bottom: 1px solid #c5d0dc;
+    /* Subtle border */
+}
+
+.box-header h4 {
+    margin: 0;
+    color: #666;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.box-content {
+    padding: 10px;
+}
+
+/* Updates List Styles */
+.updates-list {
+    padding: 5px 10px;
+}
+
+.update-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.update-icon {
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+.update-text {
+    font-size: 11px;
+    color: #333;
+}
+
+.user-link {
+    color: #0041d4;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.user-link:hover {
+    text-decoration: underline;
+}
+
+.update-time {
+    color: #999;
+    font-size: 10px;
+}
+
+.view-all-link {
+    text-align: right;
+    margin-top: 5px;
+}
+
+.view-all-link a {
+    color: #0041d4;
+    font-size: 10px;
+    text-decoration: none;
+}
+
+.view-all-link a:hover {
+    text-decoration: underline;
+}
+
+/* What's New Grid Styles */
+.whats-new-grid {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.new-item {
+    display: flex;
+    align-items: center;
+    width: 32%;
+}
+
+.new-icon {
+    font-size: 24px;
+    margin-right: 8px;
+}
+
+.new-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-title {
+    color: #0041d4;
+    font-weight: bold;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.new-title:hover {
+    text-decoration: underline;
+}
+
+.new-desc {
+    color: #666;
+    font-size: 10px;
+}
+
+/* ============================================
+   MOBILE RESPONSIVE STYLES
+   ============================================ */
+
+/* Tablet (768px - 979px) */
+@media (max-width: 979px) {
+    .main-container {
+        max-width: 100%;
+        padding: 0 5px;
+        gap: 5px;
+    }
+
+    .sidebar-container,
+    .right-sidebar-container {
+        width: 180px;
+    }
+}
+
+/* Mobile Landscape & Small Tablets (481px - 767px) */
+@media (max-width: 767px) {
+    .main-container {
+        flex-direction: column;
+        padding: 0 10px;
+    }
+
+    .sidebar-container,
+    .right-sidebar-container {
+        width: 100%;
+        order: 2;
+        /* Move sidebars below content */
+    }
+
+    .content-area {
+        order: 1;
+        /* Content first on mobile */
+        width: 100%;
+    }
+
+    /* Stack what's new items vertically on mobile */
+    .whats-new-grid {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .new-item {
+        width: 100%;
+    }
+}
+
+/* Mobile Portrait (320px - 480px) */
+@media (max-width: 480px) {
+    .app-container {
+        font-size: 12px;
+        /* Slightly larger for readability */
+    }
+
+    .main-container {
+        margin: 5px auto;
+        padding: 0 5px;
+    }
+
+    .content-box {
+        border-radius: 3px;
+        margin-bottom: 8px;
+    }
+
+    .box-header {
+        padding: 8px;
+    }
+
+    .box-header h4 {
+        font-size: 12px;
+    }
+
+    .box-content {
+        padding: 8px;
+    }
+
+    /* Make updates list more touch-friendly */
+    .update-item {
+        margin-bottom: 12px;
+        padding: 5px 0;
+    }
+
+    .update-text {
+        font-size: 12px;
+    }
+
+    .new-icon {
+        font-size: 20px;
+    }
+
+    .new-title {
+        font-size: 12px;
+    }
+
+    .new-desc {
+        font-size: 11px;
+    }
+}

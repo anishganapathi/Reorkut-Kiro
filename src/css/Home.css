@@ -1,0 +1,327 @@
+/* Home Container */
+.home-container {
+    max-width: 100%;
+    padding: 0;
+}
+
+.home-container * {
+    box-sizing: border-box;
+}
+
+/* Important Notice */
+.important-notice {
+    background: #fffacd;
+    border: 1px solid #f0e68c;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.important-notice h3 {
+    color: #d32f2f;
+    font-size: 13px;
+    margin: 0 0 8px 0;
+    font-weight: bold;
+}
+
+.important-notice p {
+    margin: 0;
+    font-size: 11px;
+    color: #333;
+}
+
+/* Post Creation Form */
+.post-creation-form {
+    padding: 15px;
+}
+
+.post-creation-form textarea {
+    width: 100%;
+    max-width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 11px;
+    font-family: Tahoma, Arial, sans-serif;
+    resize: vertical;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.post-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.post-actions button {
+    padding: 5px 15px;
+    font-size: 11px;
+    border: 1px solid #ccc;
+    background: #f0f0f0;
+    cursor: pointer;
+    border-radius: 3px;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.post-actions button:hover:not(:disabled) {
+    background: #e0e0e0;
+}
+
+.post-actions button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Updates Filter */
+.updates-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: #fff;
+    border: 1px solid #c3d9ff;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 11px;
+}
+
+.filter-left,
+.filter-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.updates-filter select {
+    padding: 3px 6px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 11px;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.filter-right button {
+    padding: 4px 10px;
+    border: 1px solid #ccc;
+    background: #f0f0f0;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.filter-right button.active {
+    background: #5e82c5;
+    color: white;
+    border-color: #5e82c5;
+}
+
+.filter-right button:hover {
+    background: #e0e0e0;
+}
+
+.filter-right button.active:hover {
+    background: #4a6ba8;
+}
+
+/* Lucky Day Fortune */
+.lucky-day-fortune {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    align-items: center;
+}
+
+.fortune-icon img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.fortune-content h3 {
+    font-size: 13px;
+    color: #333;
+    margin: 0 0 5px 0;
+    font-weight: bold;
+}
+
+.fortune-content p {
+    margin: 0;
+    font-size: 11px;
+    color: #666;
+}
+
+/* Posts Feed Container */
+.posts-feed-container {
+    padding: 15px;
+}
+
+.posts-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Post Item */
+.post-item {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.post-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.post-header {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.post-author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.post-author-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.post-author-name {
+    color: #0063dc;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.post-author-name:hover {
+    text-decoration: underline;
+}
+
+.post-timestamp {
+    font-size: 11px;
+    color: #666;
+}
+
+.post-content {
+    font-size: 12px;
+    color: #333;
+    line-height: 1.5;
+    padding-left: 60px;
+}
+
+/* People Suggestions */
+.people-suggestions {
+    padding: 15px;
+    background: #fff;
+}
+
+.people-suggestions h3 {
+    font-size: 11px;
+    color: #666;
+    margin: 0 0 15px 0;
+    font-weight: bold;
+}
+
+.suggestions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.suggestion-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.suggestion-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.suggestion-name {
+    color: #0063dc;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.suggestion-name:hover {
+    text-decoration: underline;
+}
+
+.suggestion-action {
+    color: #0063dc;
+    text-decoration: none;
+    font-size: 10px;
+}
+
+.suggestion-action:hover {
+    text-decoration: underline;
+}
+
+.suggestion-dismiss {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 1;
+}
+
+.suggestion-dismiss:hover {
+    color: #333;
+}
+
+
+
+/* Content Box Styling */
+.home-container .content-box {
+    background: #fff;
+    border: 1px solid #c3d9ff;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.home-container .content-box:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    .updates-filter {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .lucky-day-fortune {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .post-content {
+        padding-left: 0;
+    }
+}

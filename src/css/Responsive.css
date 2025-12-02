@@ -1,0 +1,398 @@
+/* ============================================
+   MOBILE RESPONSIVE STYLES - ALL COMPONENTS
+   ============================================ */
+
+/* ===== SIDEBAR ===== */
+@media (max-width: 767px) {
+    .sidebar-profile-card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .sidebar-image-frame {
+        width: 80px !important;
+        height: 80px !important;
+        margin: 0 15px 0 0 !important;
+    }
+
+    .sidebar-image {
+        width: 100%;
+        height: 100%;
+    }
+
+    .sidebar-user-info {
+        flex: 1;
+    }
+
+    .sidebar-menu {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+    }
+
+    .sidebar-menu-item {
+        font-size: 11px;
+        padding: 8px 5px;
+        text-align: center;
+    }
+
+    .menu-icon {
+        display: block;
+        margin-bottom: 3px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar-menu {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===== PROFILE ===== */
+@media (max-width: 767px) {
+    .profile-top-section {
+        flex-direction: column;
+    }
+
+    .profile-image-box {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .profile-main-image {
+        max-width: 200px;
+    }
+
+    .profile-actions-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+    }
+
+    .profile-info-box {
+        width: 100%;
+    }
+
+    .profile-stats {
+        flex-wrap: wrap;
+    }
+
+    .stat-item {
+        flex: 0 0 48%;
+        margin-bottom: 8px;
+    }
+
+    .profile-bottom-section {
+        flex-direction: column;
+    }
+
+    .profile-friends-box,
+    .profile-communities-box {
+        width: 100%;
+    }
+
+    .friends-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-main-image {
+        max-width: 150px;
+    }
+
+    .friends-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat-item {
+        flex: 0 0 100%;
+    }
+}
+
+/* ===== SCRAPBOOK ===== */
+@media (max-width: 767px) {
+    .scrap-form-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .scrap-btn {
+        width: 100%;
+    }
+
+    .scrap-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .scrap-avatar {
+        margin-bottom: 10px;
+    }
+
+    .ai-suggestions {
+        max-height: none;
+    }
+}
+
+/* ===== PHOTOS ===== */
+@media (max-width: 767px) {
+    .photos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .upload-form {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .photos-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== VIDEOS ===== */
+@media (max-width: 767px) {
+    .videos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== MESSAGES ===== */
+@media (max-width: 767px) {
+    .messages-content {
+        grid-template-columns: 1fr;
+    }
+
+    .messages-list {
+        margin-bottom: 15px;
+    }
+
+    .message-viewer {
+        position: sticky;
+        top: 10px;
+    }
+}
+
+/* ===== COMMUNITIES ===== */
+@media (max-width: 767px) {
+    .communities-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .community-card {
+        flex-direction: row;
+    }
+
+    .community-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .community-info {
+        flex: 1;
+    }
+}
+
+/* ===== COMMUNITY DETAILS ===== */
+@media (max-width: 767px) {
+    .community-header-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .community-image-large {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .community-actions-bar {
+        flex-wrap: wrap;
+    }
+
+    .action-btn {
+        flex: 1 1 45%;
+    }
+
+    .forum-table {
+        font-size: 11px;
+    }
+
+    .forum-table th,
+    .forum-table td {
+        padding: 5px;
+    }
+
+    .members-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .members-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .action-btn {
+        flex: 1 1 100%;
+    }
+}
+
+/* ===== FRIENDS ===== */
+@media (max-width: 767px) {
+    .friends-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .friends-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== TESTIMONIALS ===== */
+@media (max-width: 767px) {
+    .testimonial-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .testimonial-avatar {
+        margin-bottom: 10px;
+    }
+}
+
+/* ===== LOGIN & REGISTER ===== */
+@media (max-width: 767px) {
+
+    .login-content,
+    .register-content {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .login-left,
+    .register-left,
+    .login-right,
+    .register-right {
+        width: 100%;
+        padding: 0;
+        border: none;
+    }
+
+    .login-left,
+    .register-left {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .login-logo-text {
+        font-size: 48px;
+    }
+
+    .login-form,
+    .register-form {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .login-container,
+    .register-container {
+        padding: 10px;
+    }
+
+    .login-logo-text {
+        font-size: 36px;
+    }
+
+    .login-description p,
+    .register-description p {
+        font-size: 13px;
+    }
+}
+
+/* ===== RIGHT SIDEBAR ===== */
+@media (max-width: 767px) {
+    .right-sidebar-container {
+        display: none;
+        /* Hide right sidebar on mobile to reduce clutter */
+    }
+}
+
+/* ===== EDIT PROFILE ===== */
+@media (max-width: 767px) {
+    .edit-profile-form {
+        padding: 15px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+}
+
+/* ===== GENERAL TOUCH IMPROVEMENTS ===== */
+@media (max-width: 767px) {
+
+    /* Make all buttons more touch-friendly */
+    button,
+    .btn,
+    .action-btn,
+    .scrap-btn,
+    .community-btn {
+        min-height: 44px;
+        /* iOS recommended touch target */
+        padding: 10px 15px;
+    }
+
+    /* Make links more touch-friendly */
+    a {
+        padding: 5px 0;
+        display: inline-block;
+    }
+
+    /* Improve form inputs for mobile */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="url"],
+    input[type="date"],
+    textarea,
+    select {
+        font-size: 16px;
+        /* Prevents zoom on iOS */
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* ===== LANDSCAPE ORIENTATION ===== */
+@media (max-width: 767px) and (orientation: landscape) {
+    .header-container {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .main-container {
+        margin-top: 5px;
+    }
+}

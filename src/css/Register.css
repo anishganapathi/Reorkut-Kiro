@@ -1,0 +1,260 @@
+/* Register Page - Classic Orkut Style */
+.register-container {
+    min-height: 100vh;
+    background: #D4DDED;
+    /* Slightly darker blue background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.register-content-wrapper {
+    width: 100%;
+    max-width: 800px;
+    /* Constrain width to match classic look */
+    display: flex;
+    flex-direction: column;
+}
+
+.register-header-top {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    align-self: flex-start;
+    /* Left align the logo */
+    font-family: arial, sans-serif;
+}
+
+.register-header-top span {
+    color: #EA4C89;
+    /* Orkut Pink */
+}
+
+/* Remove individual multi-colors */
+.register-header-top .logo-o,
+.register-header-top .logo-r,
+.register-header-top .logo-k,
+.register-header-top .logo-u,
+.register-header-top .logo-t {
+    color: #EA4C89;
+}
+
+.register-box {
+    background: white;
+    border: none;
+    /* Classic orkut didn't have a strong border here, maybe just shadow or nothing */
+    border-radius: 0;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.register-title {
+    font-size: 16px;
+    color: #4A5F7F;
+    /* Dark blue header */
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.register-subtitle {
+    font-size: 11px;
+    color: #000000;
+    margin: 0 0 15px 0;
+}
+
+.register-form {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+}
+
+.register-form-row {
+    display: flex;
+    margin-bottom: 1px;
+    /* Tiny white gap */
+    align-items: stretch;
+}
+
+.register-label-container {
+    width: 40%;
+    background-color: #EAEEF5;
+    /* Label background */
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.register-input-container {
+    width: 60%;
+    background-color: #F4F7FA;
+    /* Input background (slightly lighter) */
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+}
+
+.register-form-row label {
+    font-size: 11px;
+    color: #666666;
+    text-align: right;
+    margin: 0;
+    font-weight: normal;
+}
+
+.register-form-row input[type="email"],
+.register-form-row input[type="password"],
+.register-form-row input[type="date"],
+.register-form-row input[type="text"],
+.register-form-row select {
+    border: 1px solid #A0A0A0;
+    padding: 2px 4px;
+    font-size: 11px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    border-radius: 0;
+    background: white;
+    width: 200px;
+    /* Fixed width for inputs usually */
+    height: 20px;
+}
+
+.register-form-row input:focus,
+.register-form-row select:focus {
+    outline: none;
+    border-color: #6699CC;
+}
+
+.radio-group {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: #000000;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+.radio-label input[type="radio"] {
+    margin: 0;
+    cursor: pointer;
+}
+
+/* Terms Row Specifics */
+.terms-row .register-label-container {
+    align-items: flex-start;
+    padding-top: 10px;
+}
+
+.terms-label {
+    text-align: right !important;
+    font-size: 11px;
+    color: #666666;
+    line-height: 1.3;
+}
+
+.terms-checkbox {
+    display: flex;
+    gap: 5px;
+    align-items: flex-start;
+}
+
+.terms-checkbox input[type="checkbox"] {
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+.terms-checkbox span {
+    font-size: 10px;
+    color: #000000;
+    line-height: 1.3;
+}
+
+.terms-link {
+    color: #0066CC;
+    text-decoration: none;
+}
+
+.terms-link:hover {
+    text-decoration: underline;
+}
+
+.register-error {
+    background: #FFE6E6;
+    border: 1px solid #FFCCCC;
+    color: #CC0000;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+.register-btn {
+    background: #E5E5E5;
+    border: 1px solid #999999;
+    border-radius: 1px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #000000;
+    margin-top: 15px;
+    transition: all 0.2s;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.register-btn:hover {
+    background: #D0D0D0;
+}
+
+.register-footer {
+    background: #D4DDED;
+    margin: 0;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    font-size: 10px;
+    color: #4A5F7F;
+    width: 100%;
+}
+
+.footer-link {
+    color: #0066CC;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .register-form-row {
+        flex-direction: column;
+    }
+
+    .register-label-container,
+    .register-input-container {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .register-label-container {
+        background-color: #EAEEF5;
+        border-bottom: 1px solid white;
+    }
+
+    .register-form-row label {
+        text-align: left;
+    }
+}

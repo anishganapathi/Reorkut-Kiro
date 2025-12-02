@@ -1,0 +1,145 @@
+/* Edit Profile - Classic Orkut Style */
+.edit-profile-container {
+    flex: 1;
+    max-width: 750px;
+}
+
+.edit-profile-tabs {
+    background: white;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px 5px 0 0;
+    border-bottom: none;
+    display: flex;
+    margin-bottom: 0;
+}
+
+.tab-btn {
+    background: linear-gradient(to bottom, #FAFAFA, #EEEEEE);
+    border: none;
+    border-right: 1px solid #CCCCCC;
+    padding: 8px 20px;
+    font-size: 11px;
+    cursor: pointer;
+    color: #666666;
+    transition: all 0.2s;
+}
+
+.tab-btn:first-child {
+    border-radius: 5px 0 0 0;
+}
+
+.tab-btn:hover {
+    background: linear-gradient(to bottom, #FFFFFF, #F5F5F5);
+}
+
+.tab-btn.active {
+    background: white;
+    color: #333333;
+    font-weight: bold;
+    border-bottom: 2px solid white;
+    margin-bottom: -1px;
+}
+
+.edit-profile-form {
+    background: white;
+    border: 1px solid #CCCCCC;
+    border-radius: 0 5px 5px 5px;
+    padding: 20px;
+}
+
+.tab-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="date"],
+.form-group input[type="file"],
+.form-group select,
+.form-group textarea {
+    border: 1px solid #999999;
+    padding: 5px 8px;
+    font-size: 11px;
+    font-family: Arial, sans-serif;
+    border-radius: 2px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-group textarea {
+    min-height: 80px;
+    resize: vertical;
+    max-width: 100%;
+}
+
+.form-group input[type="file"] {
+    padding: 3px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #EEEEEE;
+}
+
+.btn-submit {
+    background: linear-gradient(to bottom, #6699CC, #5588BB);
+    border: 1px solid #4477AA;
+    border-radius: 3px;
+    padding: 6px 20px;
+    font-size: 11px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.btn-submit:hover {
+    background: linear-gradient(to bottom, #5588BB, #4477AA);
+}
+
+.btn-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-cancel {
+    background: linear-gradient(to bottom, #FFFFFF, #E8E8E8);
+    border: 1px solid #AAAAAA;
+    border-radius: 3px;
+    padding: 6px 20px;
+    font-size: 11px;
+    cursor: pointer;
+    color: #333333;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+}
+
+.btn-cancel:hover {
+    background: linear-gradient(to bottom, #F8F8F8, #D8D8D8);
+    text-decoration: none;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 12px;
+}

@@ -1,0 +1,313 @@
+/* Global Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #d4dded;
+  font-size: 11px;
+}
+
+a {
+  color: #0041d4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Header Styles */
+.header-container {
+  background-color: #6699cc;
+  /* Orkut Header Blue */
+  height: 30px;
+  /* Fixed height like original */
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 980px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 10px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  margin-right: 20px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.header-logo:hover {
+  text-decoration: none;
+}
+
+.logo-tm {
+  font-size: 8px;
+  color: #ff0084;
+  /* Pink TM */
+  margin-left: 1px;
+  margin-top: 2px;
+}
+
+.header-links {
+  display: flex;
+  gap: 15px;
+}
+
+.header-links a {
+  color: #fff;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.header-links a:hover {
+  text-decoration: underline;
+}
+
+.header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.header-search-input {
+  padding: 2px 5px;
+  border: 1px solid #fff;
+  font-size: 11px;
+  width: 200px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 11px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.online-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #00ff00;
+  /* Green dot */
+  border-radius: 50%;
+  margin-right: 5px;
+  border: 1px solid #fff;
+  /* White border around dot? */
+}
+
+.user-email {
+  color: #fff;
+  margin-right: 5px;
+}
+
+.separator {
+  margin: 0 5px;
+  color: #fff;
+}
+
+.header-action {
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 11px;
+  padding: 0;
+  font-family: inherit;
+}
+
+.header-action:hover {
+  text-decoration: underline;
+}
+
+.logout-btn {
+  font-weight: bold;
+}
+
+/* ============================================
+   MOBILE RESPONSIVE STYLES - HEADER
+   ============================================ */
+
+/* Tablet (768px - 979px) */
+@media (max-width: 979px) {
+  .header-content {
+    max-width: 100%;
+    padding: 0 8px;
+  }
+
+  .header-search-input {
+    width: 120px;
+  }
+
+  .user-email {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* Mobile Landscape & Small Tablets (481px - 767px) */
+@media (max-width: 767px) {
+  .header-container {
+    height: auto;
+    min-height: 40px;
+    padding: 5px 0;
+  }
+
+  .header-content {
+    flex-direction: column;
+    padding: 5px 10px;
+    gap: 8px;
+  }
+
+  /* Top row: Logo and User Info */
+  .header-left {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    order: 1;
+  }
+
+  .header-logo {
+    font-size: 16px;
+    margin-right: 0;
+  }
+
+  .logo-tm {
+    font-size: 7px;
+  }
+
+  /* Hide navigation links on mobile */
+  .header-links {
+    display: none;
+  }
+
+  /* User info on the right of logo */
+  .header-right {
+    order: 2;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .user-email {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 10px;
+  }
+
+  .separator {
+    margin: 0 3px;
+  }
+
+  .header-action {
+    font-size: 10px;
+  }
+
+  /* Search bar full width below */
+  .header-center {
+    width: 100%;
+    order: 3;
+    margin-top: 0;
+  }
+
+  .header-search-input {
+    width: 100%;
+    padding: 6px 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+}
+
+/* Mobile Portrait (320px - 480px) */
+@media (max-width: 480px) {
+  .header-container {
+    min-height: 50px;
+  }
+
+  .header-logo {
+    font-size: 14px;
+  }
+
+  .logo-tm {
+    font-size: 6px;
+  }
+
+  .header-right {
+    font-size: 9px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .user-email {
+    max-width: 70px;
+    font-size: 9px;
+  }
+
+  .online-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  /* Stack user actions vertically on very small screens */
+  .separator:nth-of-type(2) {
+    display: none;
+  }
+
+  .header-action {
+    font-size: 9px;
+    padding: 2px 0;
+  }
+
+  .header-search-input {
+    padding: 8px;
+    font-size: 16px;
+    /* Prevents iOS zoom */
+  }
+}
+
+/* Extra small screens (< 360px) */
+@media (max-width: 359px) {
+  .header-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .header-right {
+    width: 100%;
+    justify-content: space-between;
+    font-size: 9px;
+  }
+
+  .user-info {
+    flex: 1;
+  }
+
+  .user-email {
+    max-width: 60px;
+  }
+}

@@ -1,0 +1,143 @@
+.profile-visitors-container {
+    background: #ffffff;
+    border: 1px solid #b3c9ef;
+    border-radius: 8px;
+    padding: 15px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.visitors-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #6d9ad8;
+}
+
+.visitors-header h2 {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+.visitors-count {
+    font-size: 12px;
+    color: #666;
+}
+
+.visitors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.visitor-card {
+    background: #fafafa;
+    border: 1px solid #e8f0f8;
+    border-radius: 5px;
+    padding: 12px;
+    transition: all 0.2s;
+}
+
+.visitor-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-color: #b3c9ef;
+}
+
+.visitor-link {
+    display: flex;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.visitor-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 3px;
+    object-fit: cover;
+    border: 2px solid #b3c9ef;
+    flex-shrink: 0;
+}
+
+.visitor-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.visitor-name {
+    font-size: 12px;
+    font-weight: bold;
+    color: #0063dc;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.visitor-name:hover {
+    text-decoration: underline;
+}
+
+.visitor-location {
+    font-size: 10px;
+    color: #666;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.visitor-time {
+    font-size: 10px;
+    color: #999;
+    font-style: italic;
+}
+
+.loading,
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+}
+
+.empty-state p {
+    font-size: 13px;
+    margin: 8px 0;
+}
+
+.empty-hint {
+    font-size: 11px;
+    color: #bbb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .visitors-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .visitor-card {
+        padding: 10px;
+    }
+
+    .visitor-avatar {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .visitors-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .visitor-link {
+        gap: 10px;
+    }
+}

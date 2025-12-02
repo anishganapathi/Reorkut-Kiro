@@ -1,0 +1,156 @@
+/* Right Sidebar Styles */
+.right-sidebar-container {
+    width: 200px;
+}
+
+.right-sidebar-box {
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.right-sidebar-header {
+    background-color: #e5eef9;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #c5d0dc;
+}
+
+.right-sidebar-title {
+    font-weight: bold;
+    color: #666;
+    font-size: 11px;
+}
+
+.right-sidebar-count {
+    color: #0041d4;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.right-sidebar-link {
+    color: #0041d4;
+    font-size: 10px;
+    text-decoration: none;
+}
+
+.right-sidebar-link:hover {
+    text-decoration: underline;
+}
+
+.right-sidebar-content {
+    padding: 10px;
+}
+
+/* Friends Grid */
+.friends-grid-sidebar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.friend-item-sidebar {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.friend-avatar-sidebar {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    margin-bottom: 3px;
+    display: block;
+}
+
+.friend-name-sidebar {
+    color: #0041d4;
+    font-size: 10px;
+    text-decoration: none;
+    line-height: 1.2;
+    margin-bottom: 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.friend-name-sidebar:hover {
+    text-decoration: underline;
+}
+
+.friend-mutual-sidebar {
+    color: #666;
+    font-size: 9px;
+}
+
+/* Communities Grid */
+.communities-grid-sidebar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.community-item-sidebar {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.community-image-sidebar {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    margin-bottom: 3px;
+    display: block;
+}
+
+.community-name-sidebar {
+    color: #0041d4;
+    font-size: 10px;
+    text-decoration: none;
+    line-height: 1.2;
+    margin-bottom: 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.community-name-sidebar:hover {
+    text-decoration: underline;
+}
+
+.community-members-sidebar {
+    color: #666;
+    font-size: 9px;
+}
+
+/* Sidebar Actions Footer */
+.sidebar-actions {
+    background-color: #f0f4fa;
+    /* Slightly darker than header? Or just white? Screenshot looks white/light grey */
+    padding: 5px 10px;
+    text-align: right;
+    border-top: 1px solid #eee;
+}
+
+.sidebar-actions .right-sidebar-link {
+    margin-left: 5px;
+}
+
+/* Loading and Empty States */
+.loading-sidebar,
+.empty-sidebar {
+    text-align: center;
+    padding: 20px 10px;
+    color: #999;
+    font-size: 11px;
+}

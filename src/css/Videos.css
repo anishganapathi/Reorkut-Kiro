@@ -1,0 +1,158 @@
+.videos-container {
+    background-color: #fff;
+    border: 1px solid #dcdcdc;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.videos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #005599;
+}
+
+.videos-title {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+}
+
+.add-video-btn {
+    padding: 6px 15px;
+    background-color: #005599;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.add-video-btn:hover {
+    background-color: #004080;
+}
+
+.add-video-form {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.add-video-form h3 {
+    font-size: 14px;
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.video-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+.submit-video-btn {
+    padding: 8px 20px;
+    background-color: #005599;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.submit-video-btn:hover {
+    background-color: #004080;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.video-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 120px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-thumbnail {
+    color: #999;
+    font-size: 12px;
+}
+
+.video-info {
+    padding: 10px;
+}
+
+.video-title {
+    font-size: 13px;
+    color: #333;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
+.video-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.watch-btn,
+.delete-video-btn {
+    padding: 5px 12px;
+    font-size: 11px;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.watch-btn {
+    background-color: #005599;
+    color: white;
+    border: none;
+    display: inline-block;
+}
+
+.watch-btn:hover {
+    background-color: #004080;
+}
+
+.delete-video-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+}
+
+.delete-video-btn:hover {
+    background-color: #c82333;
+}
+
+.loading,
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 14px;
+}

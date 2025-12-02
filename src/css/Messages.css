@@ -1,0 +1,206 @@
+.messages-container {
+    background-color: #fff;
+    border: 1px solid #dcdcdc;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.messages-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #005599;
+}
+
+.messages-title {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+}
+
+.compose-btn {
+    padding: 6px 15px;
+    background-color: #005599;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.compose-btn:hover {
+    background-color: #004080;
+}
+
+.compose-form {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.compose-form h3 {
+    font-size: 14px;
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.message-input,
+.message-textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+}
+
+.send-btn {
+    padding: 8px 20px;
+    background-color: #005599;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.send-btn:hover {
+    background-color: #004080;
+}
+
+.messages-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 15px;
+    min-height: 400px;
+}
+
+.messages-list {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.messages-tabs {
+    display: flex;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab {
+    padding: 10px 15px;
+    font-size: 13px;
+    cursor: pointer;
+    color: #666;
+}
+
+.tab.active {
+    background-color: #fff;
+    color: #005599;
+    font-weight: bold;
+    border-bottom: 2px solid #005599;
+}
+
+.message-items {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.message-item {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.message-item:hover {
+    background-color: #f9f9f9;
+}
+
+.message-item.unread {
+    background-color: #e5f4fe;
+    font-weight: bold;
+}
+
+.message-item.selected {
+    background-color: #d0e8f7;
+}
+
+.message-sender {
+    font-size: 13px;
+    color: #005599;
+    margin-bottom: 3px;
+}
+
+.message-subject {
+    font-size: 12px;
+    color: #333;
+    margin-bottom: 3px;
+}
+
+.message-date {
+    font-size: 11px;
+    color: #999;
+}
+
+.message-viewer {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #fff;
+}
+
+.message-viewer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.message-viewer-header h3 {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+}
+
+.delete-msg-btn {
+    padding: 5px 12px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.delete-msg-btn:hover {
+    background-color: #c82333;
+}
+
+.message-meta {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.message-body {
+    font-size: 13px;
+    color: #333;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.loading,
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 14px;
+}

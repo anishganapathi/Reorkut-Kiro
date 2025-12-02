@@ -1,0 +1,75 @@
+/* Sidebar Styles */
+.sidebar-profile-card {
+    padding: 10px;
+    text-align: center;
+}
+
+.sidebar-image-frame {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 3px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.sidebar-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+}
+
+.sidebar-links-row {
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+
+.sidebar-links-row a {
+    margin: 0 5px;
+}
+
+.sidebar-user-info {
+    margin-bottom: 15px;
+}
+
+.sidebar-name {
+    font-weight: bold;
+    color: #0041d4;
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+.sidebar-location {
+    font-size: 10px;
+    color: #666;
+}
+
+.sidebar-menu {
+    text-align: left;
+    margin-top: 10px;
+}
+
+.sidebar-menu-item {
+    display: block;
+    padding: 3px 0;
+    color: #0041d4;
+    text-decoration: none;
+    font-size: 11px;
+}
+
+.sidebar-menu-item:hover {
+    text-decoration: underline;
+}
+
+.menu-icon {
+    display: inline-block;
+    width: 16px;
+    text-align: center;
+    margin-right: 5px;
+    font-size: 12px;
+}
+
+.menu-count {
+    color: #666;
+    font-size: 10px;
+}
