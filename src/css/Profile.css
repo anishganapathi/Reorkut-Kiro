@@ -154,6 +154,44 @@
     color: #333333;
 }
 
+/* About Me Section */
+.profile-about-section {
+    background: white;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.about-content {
+    padding: 15px;
+}
+
+.about-item {
+    margin-bottom: 15px;
+}
+
+.about-item:last-child {
+    margin-bottom: 0;
+}
+
+.about-label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #666666;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.about-text {
+    font-size: 11px;
+    color: #333333;
+    line-height: 1.5;
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
 .profile-bottom-section {
     display: grid;
     grid-template-columns: 1fr 1fr;

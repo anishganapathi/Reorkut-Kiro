@@ -153,6 +153,35 @@ function Profile() {
                 </div>
             </div>
 
+            {/* About Me Section - Personal Details */}
+            {(displayProfile.about || displayProfile.relationship_status || displayProfile.interests) && (
+                <div className="profile-about-section">
+                    <div className="box-header">
+                        <h4>about me</h4>
+                    </div>
+                    <div className="about-content">
+                        {displayProfile.about && (
+                            <div className="about-item">
+                                <span className="about-label">About Me:</span>
+                                <p className="about-text">{displayProfile.about}</p>
+                            </div>
+                        )}
+                        {displayProfile.relationship_status && (
+                            <div className="about-item">
+                                <span className="about-label">Relationship Status:</span>
+                                <p className="about-text">{displayProfile.relationship_status}</p>
+                            </div>
+                        )}
+                        {displayProfile.interests && (
+                            <div className="about-item">
+                                <span className="about-label">Interests:</span>
+                                <p className="about-text">{displayProfile.interests}</p>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
+
             <div className="profile-bottom-section">
                 {/* Friends Box */}
                 <div className="profile-friends-box">

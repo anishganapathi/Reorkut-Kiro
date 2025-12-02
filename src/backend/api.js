@@ -174,10 +174,10 @@ export const uploadProfileImage = async (file, userId) => {
 }
 
 export const updateUser = async (userId, updates) => {
-    // Filter out undefined, null, and empty values to prevent schema issues
+    // Filter out undefined and null values, but allow empty strings (to clear fields)
     const cleanedUpdates = Object.entries(updates).reduce((acc, [key, value]) => {
-        // Only include fields that have actual values
-        if (value !== undefined && value !== null && value !== '') {
+        // Include fields that are not undefined or null (empty strings are allowed)
+        if (value !== undefined && value !== null) {
             acc[key] = value
         }
         return acc
