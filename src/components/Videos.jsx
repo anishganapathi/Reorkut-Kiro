@@ -7,6 +7,7 @@ function Videos() {
     const [loading, setLoading] = useState(true)
     const [showAddForm, setShowAddForm] = useState(false)
     const [newVideo, setNewVideo] = useState({ title: '', url: '' })
+    const [playingVideo, setPlayingVideo] = useState(null)
 
     const user = JSON.parse(localStorage.getItem('profile'))
     const userId = user?.result?.id || user?.id
@@ -27,6 +28,31 @@ function Videos() {
         }
     }
 
+    const getVideoId = (url) => {
+        if (!url) return null
+        try {
+            const urlObj = new URL(url)
+            if (urlObj.hostname.includes('youtube.com')) {
+                if (urlObj.pathname.startsWith('/embed/')) {
+                    return urlObj.pathname.split('/')[2]
+                }
+                return urlObj.searchParams.get('v')
+            } else if (urlObj.hostname.includes('youtu.be')) {
+                return urlObj.pathname.slice(1)
+            }
+        } catch (e) {
+            // Fallback for simple string parsing if URL construction fails
+            if (url.includes('v=')) {
+                return url.split('v=')[1].split('&')[0]
+            } else if (url.includes('youtu.be/')) {
+                return url.split('youtu.be/')[1].split('?')[0]
+            } else if (url.includes('/embed/')) {
+                return url.split('/embed/')[1].split('?')[0]
+            }
+        }
+        return null
+    }
+
     const handleAddVideo = async (e) => {
         e.preventDefault()
         if (!newVideo.title || !newVideo.url) {
@@ -35,12 +61,7 @@ function Videos() {
         }
 
         try {
-            // Extract video ID from YouTube URL
-            let videoId = ''
-            if (newVideo.url.includes('youtube.com') || newVideo.url.includes('youtu.be')) {
-                const urlParams = new URLSearchParams(new URL(newVideo.url).search)
-                videoId = urlParams.get('v') || newVideo.url.split('/').pop()
-            }
+            const videoId = getVideoId(newVideo.url)
 
             await api.uploadVideo({
                 userId,
@@ -125,14 +146,12 @@ function Videos() {
                             <div className="video-info">
                                 <h4 className="video-title">{video.title}</h4>
                                 <div className="video-actions">
-                                    <a
-                                        href={video.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                    <button
+                                        onClick={() => setPlayingVideo(video)}
                                         className="watch-btn"
                                     >
                                         Watch
-                                    </a>
+                                    </button>
                                     <button
                                         onClick={() => handleDeleteVideo(video.id)}
                                         className="delete-video-btn"
@@ -143,6 +162,23 @@ function Videos() {
                             </div>
                         </div>
                     ))}
+                </div>
+            )}
+
+            {playingVideo && (
+                <div className="video-modal-overlay" onClick={() => setPlayingVideo(null)}>
+                    <div className="video-modal-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="video-modal-close" onClick={() => setPlayingVideo(null)}>×</button>
+                        <div className="video-player-wrapper">
+                            <iframe
+                                src={`https://www.youtube.com/embed/${getVideoId(playingVideo.url)}?autoplay=1`}
+                                title={playingVideo.title}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            ></iframe>
+                        </div>
+                        <h3 style={{ marginTop: '15px', marginBottom: '0', fontSize: '16px' }}>{playingVideo.title}</h3>
+                    </div>
                 </div>
             )}
         </div>
