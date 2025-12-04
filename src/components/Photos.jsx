@@ -6,7 +6,8 @@ import {
     deletePhotoAlbum,
     fetchAlbumPhotos,
     uploadPhotos,
-    deletePhoto
+    deletePhoto,
+    getCurrentUser
 } from '../backend/api'
 import { validatePhotoFile, validateAlbumName } from '../utils/validation'
 
@@ -24,20 +25,33 @@ function Photos() {
     const [newAlbumName, setNewAlbumName] = useState('')
     const [newAlbumDescription, setNewAlbumDescription] = useState('')
 
-    const currentUser = JSON.parse(localStorage.getItem('profile'))
+    const [currentUser, setCurrentUser] = useState(null)
+    const [checkingUser, setCheckingUser] = useState(true)
+    const userId = currentUser?.id
 
     useEffect(() => {
-        if (currentUser) {
-            loadAlbums()
+        const checkUser = async () => {
+            try {
+                const user = await getCurrentUser()
+                if (user) {
+                    setCurrentUser(user)
+                    loadAlbums(user.id)
+                }
+            } catch (err) {
+                console.error('Error checking user session:', err)
+            } finally {
+                setCheckingUser(false)
+            }
         }
+        checkUser()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const loadAlbums = async () => {
+    const loadAlbums = async (id) => {
         try {
             setLoading(true)
             setError(null)
-            const data = await fetchPhotoAlbums(currentUser.id)
+            const data = await fetchPhotoAlbums(id || userId)
             setAlbums(data)
         } catch (err) {
             console.error('Error loading albums:', err)
@@ -61,7 +75,7 @@ function Photos() {
             setLoading(true)
             setError(null)
             const newAlbum = await createPhotoAlbum({
-                userId: currentUser.id,
+                userId: userId,
                 name: newAlbumName,
                 description: newAlbumDescription
             })
@@ -159,7 +173,7 @@ function Photos() {
             setError(null)
             await uploadPhotos({
                 albumId: selectedAlbumId,
-                userId: currentUser.id,
+                userId: userId,
                 files: selectedFiles
             })
 
