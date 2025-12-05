@@ -75,7 +75,7 @@ const PostCreationForm = ({ postText, onPostChange, onPost, onCancel }) => (
         />
         <div className="post-actions">
             <button onClick={onPost} disabled={!postText.trim()}>post</button>
-            <button onClick={onCancel}>cancel</button>
+            {/* <button onClick={onCancel}>cancel</button> */}
         </div>
     </div>
 )
