@@ -84,7 +84,7 @@
 .setting-item select {
     width: 100%;
     max-width: 300px;
-    padding: 8px;
+    padding: 2px !important;
     border: 1px solid #ccc;
     border-radius: 3px;
     font-size: 13px;
