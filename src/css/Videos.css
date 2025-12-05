@@ -1,6 +1,7 @@
+/* Videos Page - Orkut Style */
 .videos-container {
     background-color: #fff;
-    border: 1px solid #dcdcdc;
+    border: 1px solid #CCCCCC;
     padding: 15px;
     border-radius: 5px;
 }
@@ -9,78 +10,93 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #005599;
+    border-bottom: 1px solid #CCCCCC;
 }
 
 .videos-title {
-    font-size: 18px;
-    color: #333;
+    font-size: 12px;
+    color: #333333;
     margin: 0;
+    font-weight: bold;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .add-video-btn {
-    padding: 6px 15px;
-    background-color: #005599;
-    color: white;
-    border: none;
+    padding: 4px 12px;
+    background: linear-gradient(to bottom, #FFFFFF, #E8E8E8);
+    color: #333333;
+    border: 1px solid #AAAAAA;
     border-radius: 3px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 11px;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
+    transition: all 0.2s;
 }
 
 .add-video-btn:hover {
-    background-color: #004080;
+    background: linear-gradient(to bottom, #F8F8F8, #D8D8D8);
 }
 
 .add-video-form {
-    background-color: #f5f5f5;
+    background-color: #F5F5F5;
     padding: 15px;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #CCCCCC;
 }
 
 .add-video-form h3 {
-    font-size: 14px;
+    font-size: 12px;
     margin: 0 0 10px 0;
-    color: #333;
+    color: #333333;
+    font-weight: bold;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .video-input {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
+    padding: 6px;
+    margin-bottom: 8px;
+    border: 1px solid #CCCCCC;
     border-radius: 3px;
-    font-size: 13px;
+    font-size: 11px;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .submit-video-btn {
-    padding: 8px 20px;
-    background-color: #005599;
-    color: white;
-    border: none;
+    padding: 4px 12px;
+    background: linear-gradient(to bottom, #FFFFFF, #E8E8E8);
+    color: #333333;
+    border: 1px solid #AAAAAA;
     border-radius: 3px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 11px;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
+    transition: all 0.2s;
 }
 
 .submit-video-btn:hover {
-    background-color: #004080;
+    background: linear-gradient(to bottom, #F8F8F8, #D8D8D8);
 }
 
 .videos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
+    gap: 12px;
 }
 
 .video-card {
-    border: 1px solid #ddd;
+    border: 1px solid #CCCCCC;
     border-radius: 5px;
     overflow: hidden;
     background-color: #fff;
+    transition: box-shadow 0.2s;
+}
+
+.video-card:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .video-thumbnail {
@@ -99,8 +115,9 @@
 }
 
 .no-thumbnail {
-    color: #999;
-    font-size: 12px;
+    color: #999999;
+    font-size: 11px;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .video-info {
@@ -108,53 +125,57 @@
 }
 
 .video-title {
-    font-size: 13px;
-    color: #333;
-    margin: 0 0 10px 0;
+    font-size: 11px;
+    color: #333333;
+    margin: 0 0 8px 0;
     font-weight: bold;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .video-actions {
     display: flex;
-    gap: 10px;
+    gap: 6px;
 }
 
 .watch-btn,
 .delete-video-btn {
-    padding: 5px 12px;
-    font-size: 11px;
+    padding: 4px 10px;
+    font-size: 10px;
     border-radius: 3px;
     cursor: pointer;
     text-decoration: none;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
+    transition: all 0.2s;
 }
 
 .watch-btn {
-    background-color: #005599;
-    color: white;
-    border: none;
+    background: linear-gradient(to bottom, #FFFFFF, #E8E8E8);
+    color: #333333;
+    border: 1px solid #AAAAAA;
     display: inline-block;
 }
 
 .watch-btn:hover {
-    background-color: #004080;
+    background: linear-gradient(to bottom, #F8F8F8, #D8D8D8);
 }
 
 .delete-video-btn {
-    background-color: #dc3545;
-    color: white;
-    border: none;
+    background: linear-gradient(to bottom, #FFFFFF, #E8E8E8);
+    color: #333333;
+    border: 1px solid #AAAAAA;
 }
 
 .delete-video-btn:hover {
-    background-color: #c82333;
+    background: linear-gradient(to bottom, #F8F8F8, #D8D8D8);
 }
 
 .loading,
 .empty-state {
     text-align: center;
     padding: 40px;
-    color: #666;
-    font-size: 14px;
+    color: #666666;
+    font-size: 11px;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 /* Modal Styles */
@@ -175,6 +196,7 @@
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
+    border: 1px solid #CCCCCC;
     position: relative;
     width: 80%;
     max-width: 800px;
@@ -186,7 +208,7 @@
     top: -10px;
     right: -10px;
     background-color: #fff;
-    border: none;
+    border: 1px solid #AAAAAA;
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -196,7 +218,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #333;
+    color: #333333;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
+    transition: all 0.2s;
+}
+
+.video-modal-close:hover {
+    background-color: #F5F5F5;
 }
 
 .video-player-wrapper {

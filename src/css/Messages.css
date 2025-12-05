@@ -1,6 +1,7 @@
+/* Messages Page - Orkut Style */
 .messages-container {
     background-color: #fff;
-    border: 1px solid #dcdcdc;
+    border: 1px solid #CCCCCC;
     padding: 15px;
     border-radius: 5px;
 }
@@ -9,67 +10,76 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #005599;
+    border-bottom: 1px solid #CCCCCC;
 }
 
 .messages-title {
-    font-size: 18px;
-    color: #333;
+    font-size: 12px;
+    color: #333333;
     margin: 0;
+    font-weight: bold;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .compose-btn {
-    padding: 6px 15px;
-    background-color: #005599;
-    color: white;
-    border: none;
+    padding: 4px 12px;
+    background: linear-gradient(to bottom, #FFFFFF, #E8E8E8);
+    color: #333333;
+    border: 1px solid #AAAAAA;
     border-radius: 3px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 11px;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
+    transition: all 0.2s;
 }
 
 .compose-btn:hover {
-    background-color: #004080;
+    background: linear-gradient(to bottom, #F8F8F8, #D8D8D8);
 }
 
 .compose-form {
-    background-color: #f5f5f5;
+    background-color: #F5F5F5;
     padding: 15px;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #CCCCCC;
 }
 
 .compose-form h3 {
-    font-size: 14px;
+    font-size: 12px;
     margin: 0 0 10px 0;
-    color: #333;
+    color: #333333;
+    font-weight: bold;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .message-input,
 .message-textarea {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
+    padding: 6px;
+    margin-bottom: 8px;
+    border: 1px solid #CCCCCC;
     border-radius: 3px;
-    font-size: 13px;
-    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .send-btn {
-    padding: 8px 20px;
-    background-color: #005599;
-    color: white;
-    border: none;
+    padding: 4px 12px;
+    background: linear-gradient(to bottom, #FFFFFF, #E8E8E8);
+    color: #333333;
+    border: 1px solid #AAAAAA;
     border-radius: 3px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 11px;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
+    transition: all 0.2s;
 }
 
 .send-btn:hover {
-    background-color: #004080;
+    background: linear-gradient(to bottom, #F8F8F8, #D8D8D8);
 }
 
 .messages-content {
@@ -80,29 +90,30 @@
 }
 
 .messages-list {
-    border: 1px solid #ddd;
+    border: 1px solid #CCCCCC;
     border-radius: 5px;
     overflow: hidden;
+    background-color: #fff;
 }
 
 .messages-tabs {
     display: flex;
-    background-color: #f5f5f5;
-    border-bottom: 1px solid #ddd;
+    background: linear-gradient(to bottom, #FAFAFA, #EEEEEE);
+    border-bottom: 1px solid #CCCCCC;
 }
 
 .tab {
-    padding: 10px 15px;
-    font-size: 13px;
+    padding: 8px 12px;
+    font-size: 11px;
     cursor: pointer;
-    color: #666;
+    color: #666666;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .tab.active {
     background-color: #fff;
-    color: #005599;
+    color: #0063CD;
     font-weight: bold;
-    border-bottom: 2px solid #005599;
 }
 
 .message-items {
@@ -111,44 +122,47 @@
 }
 
 .message-item {
-    padding: 12px;
-    border-bottom: 1px solid #eee;
+    padding: 10px;
+    border-bottom: 1px solid #EEEEEE;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
 .message-item:hover {
-    background-color: #f9f9f9;
+    background-color: #F9F9F9;
 }
 
 .message-item.unread {
-    background-color: #e5f4fe;
+    background-color: #E5F4FE;
     font-weight: bold;
 }
 
 .message-item.selected {
-    background-color: #d0e8f7;
+    background-color: #D0E8F7;
 }
 
 .message-sender {
-    font-size: 13px;
-    color: #005599;
+    font-size: 11px;
+    color: #0063CD;
     margin-bottom: 3px;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .message-subject {
-    font-size: 12px;
-    color: #333;
+    font-size: 11px;
+    color: #333333;
     margin-bottom: 3px;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .message-date {
-    font-size: 11px;
-    color: #999;
+    font-size: 10px;
+    color: #999999;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .message-viewer {
-    border: 1px solid #ddd;
+    border: 1px solid #CCCCCC;
     border-radius: 5px;
     padding: 15px;
     background-color: #fff;
@@ -160,47 +174,54 @@
     align-items: center;
     margin-bottom: 15px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #CCCCCC;
 }
 
 .message-viewer-header h3 {
-    font-size: 16px;
-    color: #333;
+    font-size: 12px;
+    color: #333333;
     margin: 0;
+    font-weight: bold;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .delete-msg-btn {
-    padding: 5px 12px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
+    padding: 4px 10px;
+    background: linear-gradient(to bottom, #FFFFFF, #E8E8E8);
+    color: #333333;
+    border: 1px solid #AAAAAA;
     border-radius: 3px;
     cursor: pointer;
-    font-size: 11px;
+    font-size: 10px;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
+    transition: all 0.2s;
 }
 
 .delete-msg-btn:hover {
-    background-color: #c82333;
+    background: linear-gradient(to bottom, #F8F8F8, #D8D8D8);
 }
 
 .message-meta {
-    font-size: 12px;
-    color: #666;
+    font-size: 11px;
+    color: #666666;
     margin-bottom: 15px;
     line-height: 1.6;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .message-body {
-    font-size: 13px;
-    color: #333;
+    font-size: 11px;
+    color: #333333;
     line-height: 1.6;
     white-space: pre-wrap;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .loading,
 .empty-state {
     text-align: center;
     padding: 40px;
-    color: #666;
-    font-size: 14px;
+    color: #666666;
+    font-size: 11px;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
