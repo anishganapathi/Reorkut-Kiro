@@ -170,10 +170,12 @@ function Home() {
 
     return (
         <div className="home-container">
-
             {/* Post Creation Form */}
             <ErrorBoundary>
                 <div className="content-box">
+                    <div className="home-greeting">
+                        Hello {user?.result?.name || user?.name || 'User'}
+                    </div>
                     <PostCreationForm
                         postText={postText}
                         onPostChange={handlePostChange}

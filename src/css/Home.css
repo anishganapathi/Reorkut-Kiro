@@ -8,6 +8,15 @@
     box-sizing: border-box;
 }
 
+/* Home Greeting */
+.home-greeting {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333333;
+    padding: 15px 15px 10px 15px;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
+}
+
 /* Important Notice */
 .important-notice {
     background: #fffacd;
