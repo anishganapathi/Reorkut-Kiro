@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as api from '../backend/api'
 import '../css/Communities.css'
@@ -6,6 +6,9 @@ import '../css/Communities.css'
 function Communities() {
     const navigate = useNavigate()
     const [showCreateModal, setShowCreateModal] = useState(false)
+    const [myCommunities, setMyCommunities] = useState([])
+    const [exploreCommunities, setExploreCommunities] = useState([])
+    const [loading, setLoading] = useState(true)
     const [formData, setFormData] = useState({
         name: '',
         category: 'General',
@@ -14,56 +17,9 @@ function Communities() {
         location: '',
         image: ''
     })
-    const [loading, setLoading] = useState(false)
 
     const user = JSON.parse(localStorage.getItem('profile'))
     const userId = user?.result?.id || user?.id
-
-    // Static community data matching the screenshot
-    const communities = [
-        {
-            id: 1,
-            name: 'I Love San Francisco',
-            category: 'Cities & Neighborhoods',
-            members: '15,234 members',
-            image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=300&fit=crop',
-        },
-        {
-            id: 2,
-            name: 'Photography Lovers',
-            category: 'Hobbies & Crafts',
-            members: '45,678 members',
-            image: 'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=400&h=300&fit=crop',
-        },
-        {
-            id: 3,
-            name: 'Tech Enthusiasts',
-            category: 'Technology',
-            members: '23,456 members',
-            image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop',
-        },
-        {
-            id: 4,
-            name: 'Coffee Addicts',
-            category: 'Food & Drink',
-            members: '12,890 members',
-            image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=300&fit=crop',
-        },
-        {
-            id: 5,
-            name: 'Travel Junkies',
-            category: 'Travel',
-            members: '34,567 members',
-            image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&h=300&fit=crop',
-        },
-        {
-            id: 6,
-            name: 'Music Lovers',
-            category: 'Music',
-            members: '56,789 members',
-            image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&h=300&fit=crop',
-        },
-    ]
 
     const categories = [
         'General',
@@ -79,6 +35,30 @@ function Communities() {
         'Business',
         'Health & Wellness'
     ]
+
+    useEffect(() => {
+        fetchData()
+    }, [userId])
+
+    const fetchData = async () => {
+        setLoading(true)
+        try {
+            const [myComms, allComms] = await Promise.all([
+                userId ? api.fetchUserCommunities(userId) : Promise.resolve([]),
+                api.fetchCommunities()
+            ])
+            setMyCommunities(myComms || [])
+
+            // Filter out my communities from explore list
+            const myIds = new Set((myComms || []).map(c => c.id))
+            const others = (allComms || []).filter(c => !myIds.has(c.id))
+            setExploreCommunities(others)
+        } catch (error) {
+            console.error('Error fetching communities:', error)
+        } finally {
+            setLoading(false)
+        }
+    }
 
     const handleInputChange = (e) => {
         const { name, value } = e.target
@@ -101,13 +81,15 @@ function Communities() {
             return
         }
 
-        setLoading(true)
         try {
             const newCommunity = await api.createCommunity({
                 ...formData,
                 owner_id: userId,
                 created_at: new Date().toISOString()
             })
+
+            // Auto-join the creator
+            await api.joinCommunity(userId, newCommunity.id)
 
             alert('Community created successfully!')
             setShowCreateModal(false)
@@ -120,6 +102,9 @@ function Communities() {
                 image: ''
             })
 
+            // Refresh lists
+            fetchData()
+
             // Navigate to the new community
             if (newCommunity?.id) {
                 navigate(`/communities/${newCommunity.id}`)
@@ -127,8 +112,6 @@ function Communities() {
         } catch (error) {
             console.error('Error creating community:', error)
             alert('Failed to create community. Please try again.')
-        } finally {
-            setLoading(false)
         }
     }
 
@@ -136,12 +119,16 @@ function Communities() {
         <div className="communities-container">
             <div className="communities-header">
                 <div className="communities-title-bar">
-                    <h2 className="communities-title">My Communities</h2>
+                    <h2 className="communities-title">Communities</h2>
                     <a
                         href="#"
                         className="create-community-btn"
                         onClick={(e) => {
                             e.preventDefault()
+                            if (!userId) {
+                                alert('Please login to create a community')
+                                return
+                            }
                             setShowCreateModal(true)
                         }}
                     >
@@ -149,26 +136,65 @@ function Communities() {
                     </a>
                 </div>
 
-                <div className="communities-grid">
-                    {communities.map((community) => (
-                        <div key={community.id} className="community-card">
-                            <img
-                                src={community.image}
-                                alt={community.name}
-                                className="community-image"
-                            />
-                            <div className="community-info">
-                                <a href="#" className="community-name" onClick={(e) => { e.preventDefault(); navigate(`/communities/${community.id}`) }}>{community.name}</a>
-                                <div className="community-category">{community.category}</div>
-                                <div className="community-members">{community.members}</div>
-                                <div className="community-actions">
-                                    <button className="community-btn" onClick={() => navigate(`/communities/${community.id}`)}>Visit</button>
-                                    <button className="community-btn community-btn-leave">Leave</button>
+                {loading ? (
+                    <div style={{ padding: '20px', textAlign: 'center' }}>Loading communities...</div>
+                ) : (
+                    <>
+                        {/* My Communities Section */}
+                        {myCommunities.length > 0 && (
+                            <div className="communities-section">
+                                <h3 className="section-title" style={{ marginTop: '0', marginBottom: '15px', color: '#6d84b4', borderBottom: '1px solid #dfe6ef', paddingBottom: '5px' }}>My Communities</h3>
+                                <div className="communities-grid">
+                                    {myCommunities.map((community) => (
+                                        <div key={community.id} className="community-card">
+                                            <img
+                                                src={community.image || 'https://via.placeholder.com/150'}
+                                                alt={community.name}
+                                                className="community-image"
+                                            />
+                                            <div className="community-info">
+                                                <a href="#" className="community-name" onClick={(e) => { e.preventDefault(); navigate(`/communities/${community.id}`) }}>{community.name}</a>
+                                                <div className="community-category">{community.category}</div>
+                                                <div className="community-actions">
+                                                    <button className="community-btn" onClick={() => navigate(`/communities/${community.id}`)}>Visit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
+                        )}
+
+                        {/* Explore Section */}
+                        <div className="communities-section" style={{ marginTop: '30px' }}>
+                            <h3 className="section-title" style={{ marginTop: '0', marginBottom: '15px', color: '#6d84b4', borderBottom: '1px solid #dfe6ef', paddingBottom: '5px' }}>
+                                {myCommunities.length > 0 ? 'Explore Communities' : 'All Communities'}
+                            </h3>
+                            {exploreCommunities.length === 0 ? (
+                                <div style={{ padding: '20px', color: '#666' }}>No other communities found. Create one!</div>
+                            ) : (
+                                <div className="communities-grid">
+                                    {exploreCommunities.map((community) => (
+                                        <div key={community.id} className="community-card">
+                                            <img
+                                                src={community.image || 'https://via.placeholder.com/150'}
+                                                alt={community.name}
+                                                className="community-image"
+                                            />
+                                            <div className="community-info">
+                                                <a href="#" className="community-name" onClick={(e) => { e.preventDefault(); navigate(`/communities/${community.id}`) }}>{community.name}</a>
+                                                <div className="community-category">{community.category}</div>
+                                                <div className="community-actions">
+                                                    <button className="community-btn" onClick={() => navigate(`/communities/${community.id}`)}>View</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
-                    ))}
-                </div>
+                    </>
+                )}
             </div>
 
             {/* Create Community Modal */}

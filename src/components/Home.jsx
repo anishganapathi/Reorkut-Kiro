@@ -246,7 +246,7 @@ function Home() {
             {/* Posts Feed */}
             <ErrorBoundary>
                 <div className="content-box posts-feed-container">
-                    <div className="posts-feed">
+                    <div className={`posts-feed ${viewMode}-view`}>
                         {posts.map(post => (
                             <Post key={post.id} post={post} />
                         ))}

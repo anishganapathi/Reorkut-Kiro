@@ -10,75 +10,84 @@
 
 /* Home Greeting */
 .home-greeting {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     color: #333333;
-    padding: 15px 15px 10px 15px;
+    padding: 10px;
+    background-color: #E5F4FE;
+    border-bottom: 1px solid #BFD0EA;
     font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 /* Important Notice */
 .important-notice {
-    background: #fffacd;
-    border: 1px solid #f0e68c;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
+    background: #FFFACD;
+    border: 1px solid #F0E68C;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 .important-notice h3 {
-    color: #d32f2f;
-    font-size: 13px;
-    margin: 0 0 8px 0;
+    color: #CC0000;
+    font-size: 12px;
+    margin: 0 0 5px 0;
     font-weight: bold;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .important-notice p {
     margin: 0;
     font-size: 11px;
     color: #333;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
+}
+
+/* Content Box Styling - Orkut Style */
+.home-container .content-box {
+    background: #fff;
+    border: 1px solid #BFD0EA;
+    margin-bottom: 15px;
+    border-radius: 0;
 }
 
 /* Post Creation Form */
 .post-creation-form {
-    padding: 15px;
+    padding: 10px;
+    background-color: #E5F4FE;
 }
 
 .post-creation-form textarea {
     width: 100%;
     max-width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    padding: 5px;
+    border: 1px solid #7F9DB9;
     font-size: 11px;
-    font-family: Tahoma, Arial, sans-serif;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
     resize: vertical;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     box-sizing: border-box;
+    height: 60px;
 }
 
 .post-actions {
     display: flex;
-    gap: 8px;
+    gap: 5px;
+    justify-content: flex-end;
 }
 
 .post-actions button {
-    padding: 5px 15px;
+    padding: 2px 10px;
     font-size: 11px;
-    border: 1px solid #ccc;
-    background: #f0f0f0;
+    border: 1px solid #999;
+    background: #E0E0E0;
+    color: #000;
     cursor: pointer;
-    border-radius: 3px;
-    font-family: Tahoma, Arial, sans-serif;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .post-actions button:hover:not(:disabled) {
-    background: #e0e0e0;
-}
-
-.post-actions button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+    border-color: #666;
+    background: #d0d0d0;
 }
 
 /* Updates Filter */
@@ -86,12 +95,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 15px;
-    background: #fff;
-    border: 1px solid #c3d9ff;
-    border-radius: 5px;
-    margin-bottom: 15px;
+    padding: 6px 10px;
+    background: #E5F4FE;
+    border: 1px solid #BFD0EA;
+    margin-bottom: 10px;
     font-size: 11px;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
+    color: #00468C;
 }
 
 .filter-left,
@@ -102,110 +112,133 @@
 }
 
 .updates-filter select {
-    padding: 3px 6px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    padding: 1px;
+    border: 1px solid #7F9DB9;
     font-size: 11px;
-    font-family: Tahoma, Arial, sans-serif;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .filter-right button {
-    padding: 4px 10px;
-    border: 1px solid #ccc;
-    background: #f0f0f0;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 1px solid #BFD0EA;
+    background: #fff;
     cursor: pointer;
-    border-radius: 3px;
-    font-size: 14px;
+    font-size: 12px;
+    color: #00468C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .filter-right button.active {
-    background: #5e82c5;
-    color: white;
-    border-color: #5e82c5;
-}
-
-.filter-right button:hover {
-    background: #e0e0e0;
-}
-
-.filter-right button.active:hover {
-    background: #4a6ba8;
+    background: #FFF9D7;
+    border-color: #F2C768;
 }
 
 /* Lucky Day Fortune */
 .lucky-day-fortune {
     display: flex;
-    gap: 15px;
-    padding: 15px;
+    gap: 10px;
+    padding: 10px;
     align-items: center;
+    background: #fff;
 }
 
 .fortune-icon img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #BFD0EA;
+    padding: 1px;
 }
 
 .fortune-content h3 {
-    font-size: 13px;
-    color: #333;
-    margin: 0 0 5px 0;
+    font-size: 12px;
+    color: #CC0000;
+    margin: 0 0 3px 0;
     font-weight: bold;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .fortune-content p {
     margin: 0;
     font-size: 11px;
-    color: #666;
+    color: #333;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 /* Posts Feed Container */
 .posts-feed-container {
-    padding: 15px;
+    padding: 0;
+    background: transparent !important;
+    border: none !important;
 }
 
 .posts-feed {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
-/* Post Item */
+.posts-feed.grid-view {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.posts-feed.grid-view .post-item {
+    width: calc(50% - 5px);
+    overflow: hidden;
+    height: 180px;
+    /* Fixed height for grid uniformity */
+    display: flex;
+    flex-direction: column;
+}
+
+.posts-feed.grid-view .post-content {
+    padding-left: 0;
+    margin-top: 10px;
+    /* Limit text lines in grid view */
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Post Item - The Classic "Scrap" Look */
 .post-item {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.post-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #BFD0EA;
 }
 
 .post-header {
     display: flex;
     gap: 10px;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .post-author-avatar {
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    padding: 1px;
+    border: 1px solid #BFD0EA;
     object-fit: cover;
 }
 
 .post-author-info {
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .post-author-name {
-    color: #0063dc;
+    color: #0063DC;
     text-decoration: none;
     font-size: 12px;
     font-weight: bold;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .post-author-name:hover {
@@ -213,47 +246,55 @@
 }
 
 .post-timestamp {
-    font-size: 11px;
+    font-size: 10px;
     color: #666;
+    margin-top: 2px;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .post-content {
-    font-size: 12px;
-    color: #333;
-    line-height: 1.5;
-    padding-left: 60px;
+    font-size: 11px;
+    color: #000;
+    line-height: 1.4;
+    padding-left: 62px;
+    /* Align with text start */
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 /* People Suggestions */
 .people-suggestions {
-    padding: 15px;
-    background: #fff;
+    padding: 10px;
+    background: #F0F7FF;
 }
 
 .people-suggestions h3 {
     font-size: 11px;
-    color: #666;
-    margin: 0 0 15px 0;
+    color: #00468C;
+    margin: 0 0 10px 0;
     font-weight: bold;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .suggestions-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
 }
 
 .suggestion-item {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     position: relative;
+    padding: 5px;
+    background: #fff;
+    border: 1px solid #BFD0EA;
 }
 
 .suggestion-item img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #ccc;
     object-fit: cover;
 }
 
@@ -261,14 +302,15 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 2px;
 }
 
 .suggestion-name {
-    color: #0063dc;
+    color: #0063DC;
     text-decoration: none;
     font-size: 11px;
     font-weight: bold;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .suggestion-name:hover {
@@ -276,50 +318,31 @@
 }
 
 .suggestion-action {
-    color: #0063dc;
-    text-decoration: none;
-    font-size: 10px;
-}
-
-.suggestion-action:hover {
+    color: #0063DC;
     text-decoration: underline;
+    font-size: 10px;
+    cursor: pointer;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .suggestion-dismiss {
     background: none;
     border: none;
-    font-size: 18px;
+    font-size: 14px;
     color: #999;
     cursor: pointer;
-    padding: 0;
-    width: 20px;
-    height: 20px;
-    line-height: 1;
+    padding: 0 5px;
 }
 
 .suggestion-dismiss:hover {
-    color: #333;
-}
-
-
-
-/* Content Box Styling */
-.home-container .content-box {
-    background: #fff;
-    border: 1px solid #c3d9ff;
-    border-radius: 5px;
-    margin-bottom: 15px;
-}
-
-.home-container .content-box:last-child {
-    margin-bottom: 0;
+    color: #cc0000;
 }
 
 /* Responsive Design */
 @media (max-width: 767px) {
     .updates-filter {
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
         align-items: flex-start;
     }
 
@@ -327,10 +350,9 @@
         flex-direction: column;
         text-align: center;
     }
-}
 
-@media (max-width: 480px) {
     .post-content {
         padding-left: 0;
+        margin-top: 8px;
     }
 }

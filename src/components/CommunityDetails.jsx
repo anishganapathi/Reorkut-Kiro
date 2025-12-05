@@ -7,109 +7,46 @@ function CommunityDetails() {
     const { id } = useParams()
     const [community, setCommunity] = useState(null)
     const [isMember, setIsMember] = useState(false)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     const user = JSON.parse(localStorage.getItem('profile'))
     const userId = user?.result?.id || user?.id
 
-    // Mock data - in a real app this would come from an API
-    const communitiesData = [
-        {
-            id: 1,
-            name: 'I Love San Francisco',
-            category: 'Cities & Neighborhoods',
-            members: '15,234',
-            description: 'A community for everyone who loves the City by the Bay! Share your favorite spots, events, and memories of San Francisco.',
-            image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=300&fit=crop',
-            owner: 'SF Native',
-            created: 'Jan 20, 2004',
-            type: 'Public',
-            location: 'San Francisco, CA, US'
-        },
-        {
-            id: 2,
-            name: 'Photography Lovers',
-            category: 'Hobbies & Crafts',
-            members: '45,678',
-            description: 'Discuss cameras, lenses, techniques, and share your best shots. All skill levels welcome!',
-            image: 'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=400&h=300&fit=crop',
-            owner: 'ShutterBug',
-            created: 'Feb 15, 2004',
-            type: 'Public',
-            location: 'Global'
-        },
-        {
-            id: 3,
-            name: 'Tech Enthusiasts',
-            category: 'Technology',
-            members: '23,456',
-            description: 'Latest gadgets, coding, AI, and everything tech. Join the discussion on the future of technology.',
-            image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop',
-            owner: 'GeekSquad',
-            created: 'Mar 10, 2004',
-            type: 'Public',
-            location: 'Silicon Valley, CA, US'
-        },
-        {
-            id: 4,
-            name: 'Coffee Addicts',
-            category: 'Food & Drink',
-            members: '12,890',
-            description: 'Can\'t start your day without a cup of joe? This is the place for you. Discuss beans, brewing methods, and cafes.',
-            image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=300&fit=crop',
-            owner: 'BaristaBob',
-            created: 'Apr 05, 2004',
-            type: 'Public',
-            location: 'Seattle, WA, US'
-        },
-        {
-            id: 5,
-            name: 'Travel Junkies',
-            category: 'Travel',
-            members: '34,567',
-            description: 'Share your travel stories, tips, and photos. Where are you going next?',
-            image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&h=300&fit=crop',
-            owner: 'Wanderlust',
-            created: 'May 20, 2004',
-            type: 'Public',
-            location: 'Global'
-        },
-        {
-            id: 6,
-            name: 'Music Lovers',
-            category: 'Music',
-            members: '56,789',
-            description: 'Rock, Pop, Jazz, Classical... whatever you listen to, let\'s talk about it. Share playlists and concert experiences.',
-            image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&h=300&fit=crop',
-            owner: 'MelodyMaker',
-            created: 'Jun 12, 2004',
-            type: 'Public',
-            location: 'London, UK'
-        },
-    ]
-
+    // Mock data for forum/members since we don't have full backend support yet
     const mockTopics = [
-        { id: 101, title: 'Best place for weekend brunch?', author: 'Alice', replies: 42, lastPost: 'Today' },
-        { id: 102, title: 'Anyone going to the meetup?', author: 'Bob', replies: 15, lastPost: 'Yesterday' },
-        { id: 103, title: 'Hidden gems in the city', author: 'Charlie', replies: 89, lastPost: '2 days ago' },
-        { id: 104, title: 'New member introduction', author: 'Dave', replies: 5, lastPost: '3 days ago' },
+        { id: 101, title: 'Welcome to the community!', author: 'Admin', replies: 5, lastPost: 'Today' },
+        { id: 102, title: 'General discussion', author: 'User1', replies: 12, lastPost: 'Yesterday' },
     ]
 
     const mockMembers = [
-        { id: 1, name: 'Alice', image: 'https://i.pravatar.cc/150?u=1' },
-        { id: 2, name: 'Bob', image: 'https://i.pravatar.cc/150?u=2' },
-        { id: 3, name: 'Charlie', image: 'https://i.pravatar.cc/150?u=3' },
-        { id: 4, name: 'Dave', image: 'https://i.pravatar.cc/150?u=4' },
-        { id: 5, name: 'Eve', image: 'https://i.pravatar.cc/150?u=5' },
-        { id: 6, name: 'Frank', image: 'https://i.pravatar.cc/150?u=6' },
-        { id: 7, name: 'Grace', image: 'https://i.pravatar.cc/150?u=7' },
-        { id: 8, name: 'Heidi', image: 'https://i.pravatar.cc/150?u=8' },
+        { id: 1, name: 'Member 1', image: 'https://via.placeholder.com/150' },
+        { id: 2, name: 'Member 2', image: 'https://via.placeholder.com/150' },
+        { id: 3, name: 'Member 3', image: 'https://via.placeholder.com/150' },
     ]
 
     useEffect(() => {
-        const found = communitiesData.find(c => c.id === parseInt(id))
-        setCommunity(found)
-    }, [id])
+        const fetchCommunityDetails = async () => {
+            setLoading(true)
+            try {
+                if (!id) return;
+
+                // Fetch community details
+                const data = await api.fetchCommunity(id)
+                setCommunity(data)
+
+                // Check membership if user is logged in
+                if (userId) {
+                    const memberStatus = await api.checkMembership(userId, id)
+                    setIsMember(memberStatus)
+                }
+            } catch (error) {
+                console.error('Error fetching community details:', error)
+            } finally {
+                setLoading(false)
+            }
+        }
+        fetchCommunityDetails()
+    }, [id, userId])
 
     const handleJoinLeave = async () => {
         if (!userId) {
@@ -120,11 +57,11 @@ function CommunityDetails() {
         setLoading(true)
         try {
             if (isMember) {
-                await api.leaveCommunity(userId, parseInt(id))
+                await api.leaveCommunity(userId, id)
                 setIsMember(false)
                 alert('Successfully left the community')
             } else {
-                await api.joinCommunity(userId, parseInt(id))
+                await api.joinCommunity(userId, id)
                 setIsMember(true)
                 alert('Successfully joined the community!')
             }
@@ -136,8 +73,12 @@ function CommunityDetails() {
         }
     }
 
-    if (!community) {
+    if (loading) {
         return <div className="loading">Loading community...</div>
+    }
+
+    if (!community) {
+        return <div className="loading">Community not found</div>
     }
 
     return (

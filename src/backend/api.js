@@ -1,4 +1,6 @@
 import { supabase } from './client'
+import * as replicateUtils from '../utils/replicate';
+
 
 // --- Constants ---
 export const DEFAULT_AVATAR = '/default_avatar.png'
@@ -556,6 +558,28 @@ export const leaveCommunity = async (userId, communityId) => {
     if (error) throw error
 }
 
+export const fetchCommunity = async (communityId) => {
+    const { data, error } = await supabase
+        .from('communities')
+        .select('*')
+        .eq('id', communityId)
+        .single()
+    if (error) throw error
+    return data
+}
+
+export const checkMembership = async (userId, communityId) => {
+    const { data, error } = await supabase
+        .from('community_members')
+        .select('id')
+        .eq('user_id', userId)
+        .eq('community_id', communityId)
+        .single()
+
+    if (error && error.code !== 'PGRST116') throw error // PGRST116 is "not found" which is fine
+    return !!data
+}
+
 // --- Profile Visitors ---
 export const trackProfileVisit = async (visitorId, profileId) => {
     if (visitorId === profileId) return // Don't track self-visits
@@ -816,3 +840,162 @@ export const deletePhoto = async (photoId) => {
         throw error
     }
 }
+
+
+// Add this function to your api.js file (around the signIn function)
+
+export const signInDemo = async () => {
+    try {
+        // Demo user credentials
+        const demoEmail = 'sam7075938131@gmail.com'
+        const demoPassword = 'password'
+
+        // First, try to sign in
+        let { data, error } = await supabase.auth.signInWithPassword({
+            email: demoEmail,
+            password: demoPassword
+        })
+
+        // If demo user doesn't exist, create it
+        if (error && error.message.includes('Invalid login credentials')) {
+            console.log('Demo user not found, creating demo user...')
+
+            // Create demo user
+            const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+                email: demoEmail,
+                password: demoPassword,
+                options: {
+                    data: {
+                        name: 'Demo User',
+                        isDemoUser: true
+                    }
+                }
+            })
+
+            if (signUpError) {
+                console.error('Error creating demo user:', signUpError)
+                throw signUpError
+            }
+
+            // Wait a moment for the trigger
+            await new Promise(resolve => setTimeout(resolve, 1000))
+
+            // Update the profile with demo data
+            if (signUpData.user) {
+                const demoProfile = {
+                    name: 'Demo User',
+                    image: 'https://www.gravatar.com/avatar/demo@orkut-nostalgia.com?d=identicon&f=y',
+                    birth_date: '1990-01-01',
+                    gender: 'Rather not say',
+                    country: 'Brazil',
+                    city: 'São Paulo',
+                    relationship_status: 'Single',
+                    about_me: 'This is a demo account to explore Orkut Nostalgia! Feel free to explore all features.',
+                    website: 'https://orkut-nostalgia.com',
+                    interests: 'Social Networks, Web Development, Nostalgia, Technology',
+                    movies: 'The Social Network, Hackers',
+                    music: '2000s pop, Rock',
+                    books: 'The Cathedral and the Bazaar, Hackers & Painters'
+                }
+
+                const { error: profileError } = await supabase
+                    .from('profiles')
+                    .update(demoProfile)
+                    .eq('id', signUpData.user.id)
+
+                if (profileError) {
+                    console.error('Error updating demo profile:', profileError)
+                    // Continue anyway - user can update profile later
+                }
+
+                // Now sign in with the newly created user
+                const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
+                    email: demoEmail,
+                    password: demoPassword
+                })
+
+                if (signInError) throw signInError
+                data = signInData
+            }
+        } else if (error) {
+            throw error
+        }
+
+        return data
+    } catch (error) {
+        console.error('Demo login error:', error)
+        throw error
+    }
+}
+
+// At the top of your api.js file, add the backend URL
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5001';
+
+// Method 1: Direct AI processing (returns base64)
+export const applyAIStyleTransfer = async (imageFile, style) => {
+    try {
+        const formData = new FormData();
+        formData.append('image', imageFile);
+        formData.append('style', style);
+
+        // Use full backend URL
+        console.log('API: URL:', `${BACKEND_URL}/api/ai-style-transfer`);
+        console.log('API: Image File:', imageFile.name, imageFile.type, imageFile.size);
+
+        const response = await fetch(`${BACKEND_URL}/api/ai-style-transfer`, {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+            throw new Error(errorData.error || 'AI processing failed');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('API: AI Style Transfer Error:', error);
+        throw error;
+    }
+};
+
+// Method 2: AI processing with server save
+export const applyAIStyleTransferAndSave = async (imageFile, style, userId) => {
+    try {
+        const formData = new FormData();
+        formData.append('image', imageFile);
+        formData.append('style', style);
+        formData.append('userId', userId);
+
+        // Use full backend URL
+        const response = await fetch(`${BACKEND_URL}/api/ai-style-transfer-save`, {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+            throw new Error(errorData.error || 'AI processing failed');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('API: AI Style Transfer Error:', error);
+        throw error;
+    }
+};
+
+// Helper function to convert base64 to blob for preview
+export const base64ToBlob = (base64) => {
+    const arr = base64.split(',');
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+
+    while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new Blob([u8arr], { type: mime });
+};

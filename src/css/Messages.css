@@ -228,3 +228,61 @@
     font-size: 11px;
     font-family: Verdana, Tahoma, Arial, sans-serif;
 }
+
+/* Friend Selector Dropdown */
+.friend-selector {
+    position: relative;
+}
+
+.friend-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 0 0 3px 3px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.friend-dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+}
+
+.friend-dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.friend-dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+
+.friend-dropdown-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.friend-dropdown-name {
+    font-size: 11px;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
+    color: #333;
+}
+
+.friend-dropdown-empty {
+    padding: 12px;
+    color: #999;
+    font-size: 11px;
+    text-align: center;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
+}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import * as api from '../backend/api'
+import { supabase } from '../backend/client'
 import '../css/Messages.css'
 
 function Messages() {
@@ -10,12 +11,66 @@ function Messages() {
     const [newMessage, setNewMessage] = useState({ receiverId: '', subject: '', content: '' })
     const [activeTab, setActiveTab] = useState('inbox') // 'inbox' or 'sent'
 
+    // Friend selection state
+    const [friends, setFriends] = useState([])
+    const [filteredFriends, setFilteredFriends] = useState([])
+    const [showFriendDropdown, setShowFriendDropdown] = useState(false)
+    const [searchTerm, setSearchTerm] = useState('')
+
     const user = JSON.parse(localStorage.getItem('profile'))
     const userId = user?.result?.id || user?.id
 
     useEffect(() => {
         fetchMessages()
-    }, [])
+        if (userId) {
+            fetchFriends()
+        }
+
+        // Realtime subscription for new messages
+        const channel = supabase
+            .channel('realtime:public:messages')
+            .on(
+                'postgres_changes',
+                {
+                    event: 'INSERT',
+                    schema: 'public',
+                    table: 'messages',
+                    filter: `receiver_id=eq.${userId}`
+                },
+                (payload) => {
+                    console.log('New message received via realtime:', payload)
+                    // We need to fetch the sender details, so simplest is to refetch or manually construct
+                    // For now, let's refetch to be safe and get the joined sender data
+                    fetchMessages()
+                }
+            )
+            .subscribe()
+
+        return () => {
+            supabase.removeChannel(channel)
+        }
+    }, [userId])
+
+    useEffect(() => {
+        if (searchTerm) {
+            const filtered = friends.filter(friend =>
+                friend.name.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+            setFilteredFriends(filtered)
+        } else {
+            setFilteredFriends(friends)
+        }
+    }, [searchTerm, friends])
+
+    const fetchFriends = async () => {
+        try {
+            const data = await api.fetchFriends(userId)
+            setFriends(data || [])
+            setFilteredFriends(data || [])
+        } catch (error) {
+            console.error('Error fetching friends:', error)
+        }
+    }
 
     const fetchMessages = async () => {
         try {
@@ -45,6 +100,7 @@ function Messages() {
             })
 
             setNewMessage({ receiverId: '', subject: '', content: '' })
+            setSearchTerm('')
             setShowCompose(false)
             fetchMessages()
             alert('Message sent successfully!')
@@ -54,12 +110,21 @@ function Messages() {
         }
     }
 
+    const selectFriend = (friend) => {
+        setNewMessage({ ...newMessage, receiverId: friend.id })
+        setSearchTerm(friend.name)
+        setShowFriendDropdown(false)
+    }
+
     const handleViewMessage = async (message) => {
         setSelectedMessage(message)
         if (!message.is_read && message.receiver_id === userId) {
             try {
                 await api.markMessageAsRead(message.id)
-                fetchMessages()
+                // Update local state without refetching for better UX
+                setMessages(prev => prev.map(m =>
+                    m.id === message.id ? { ...m, is_read: true } : m
+                ))
             } catch (error) {
                 console.error('Error marking message as read:', error)
             }
@@ -111,13 +176,43 @@ function Messages() {
                 <div className="compose-form">
                     <h3>New Message</h3>
                     <form onSubmit={handleSendMessage}>
-                        <input
-                            type="text"
-                            placeholder="Receiver ID (for demo)"
-                            value={newMessage.receiverId}
-                            onChange={(e) => setNewMessage({ ...newMessage, receiverId: e.target.value })}
-                            className="message-input"
-                        />
+                        <div className="friend-selector">
+                            <input
+                                type="text"
+                                placeholder="Search Friend..."
+                                value={searchTerm}
+                                onChange={(e) => {
+                                    setSearchTerm(e.target.value)
+                                    setShowFriendDropdown(true)
+                                    setNewMessage({ ...newMessage, receiverId: '' }) // Clear selected ID if typing
+                                }}
+                                onFocus={() => setShowFriendDropdown(true)}
+                                className="message-input"
+                            />
+                            {showFriendDropdown && searchTerm && !newMessage.receiverId && (
+                                <div className="friend-dropdown">
+                                    {filteredFriends.length > 0 ? (
+                                        filteredFriends.map(friend => (
+                                            <div
+                                                key={friend.id}
+                                                className="friend-dropdown-item"
+                                                onClick={() => selectFriend(friend)}
+                                            >
+                                                <img
+                                                    src={friend.image || api.DEFAULT_AVATAR}
+                                                    alt={friend.name}
+                                                    className="friend-dropdown-avatar"
+                                                />
+                                                <span className="friend-dropdown-name">{friend.name}</span>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <div className="friend-dropdown-empty">No friends found</div>
+                                    )}
+                                </div>
+                            )}
+                        </div>
+
                         <input
                             type="text"
                             placeholder="Subject"
@@ -132,7 +227,9 @@ function Messages() {
                             className="message-textarea"
                             rows="5"
                         />
-                        <button type="submit" className="send-btn">Send Message</button>
+                        <button type="submit" className="send-btn" disabled={!newMessage.receiverId}>
+                            Send Message
+                        </button>
                     </form>
                 </div>
             )}

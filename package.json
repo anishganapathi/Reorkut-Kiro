@@ -13,6 +13,7 @@
     "@vitejs/plugin-react": "^5.1.1",
     "@vitest/ui": "^4.0.14",
     "fast-check": "^4.3.0",
+    "nodemon": "^3.1.11",
     "vite": "^7.2.4",
     "vitest": "^4.0.14"
   },
@@ -21,8 +22,17 @@
     "@huggingface/inference": "^4.13.4",
     "@supabase/supabase-js": "^2.84.0",
     "axios": "^1.13.2",
+    "cloudinary": "^2.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "multer": "^2.0.2",
+    "node-fetch": "^3.3.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-router-dom": "^7.9.6"
+    "react-router-dom": "^7.9.6",
+    "replicate": "^1.4.0",
+    "uuid": "^13.0.0",
+    "xp.css": "^0.2.6"
   }
 }

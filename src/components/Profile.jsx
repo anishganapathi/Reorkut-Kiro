@@ -10,6 +10,8 @@ function Profile() {
     const [currentUser] = useState(JSON.parse(localStorage.getItem('profile')))
     const [requestSent, setRequestSent] = useState(false)
 
+    const [userCommunities, setUserCommunities] = useState([])
+
     useEffect(() => {
         const getUserData = async () => {
             const currentUserId = currentUser?.result?.id || currentUser?.id
@@ -20,7 +22,11 @@ function Profile() {
 
             if (targetUserId) {
                 try {
-                    const userData = await api.fetchUser(targetUserId)
+                    const [userData, communitiesData] = await Promise.all([
+                        api.fetchUser(targetUserId),
+                        api.fetchUserCommunities(targetUserId)
+                    ])
+
                     console.log('Profile component - fetched userData:', userData)
 
                     if (userData) {
@@ -31,6 +37,10 @@ function Profile() {
                             console.log('Profile component - API returned null, using localStorage')
                             setProfile(currentUser?.result || currentUser)
                         }
+                    }
+
+                    if (communitiesData) {
+                        setUserCommunities(communitiesData)
                     }
                 } catch (error) {
                     console.error('Error fetching profile:', error)
@@ -74,9 +84,9 @@ function Profile() {
         return <div>Profile data not available.</div>
     }
 
-    // Use actual friends and communities data from profile
+    // Use actual friends and communities data from data sources
     const friends = displayProfile.friends || []
-    const communities = displayProfile.communities || []
+    const communities = userCommunities || []
 
     const currentUserId = currentUser?.result?.id || currentUser?.id
     const isOwnProfile = !id || (currentUserId === displayProfile.id)
