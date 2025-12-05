@@ -140,7 +140,7 @@ function Home() {
     const [user, setUser] = useState(null)
     const [postText, setPostText] = useState('')
     const [viewMode, setViewMode] = useState('grid') // 'grid' or 'list'
-    const [posts] = useState(demoPosts)
+    const [posts, setPosts] = useState(demoPosts)
     const [suggestions, setSuggestions] = useState(demoFriendSuggestions)
 
     useEffect(() => {
@@ -155,8 +155,30 @@ function Home() {
 
     const handlePost = async () => {
         if (!postText.trim()) return
-        // TODO: Save post to database
-        console.log('Posting:', postText)
+
+        // Get current user info
+        const currentUser = user?.result || user
+
+        // Create new post with user's information
+        const newPost = {
+            id: `post-${Date.now()}`,
+            author: {
+                name: currentUser?.name || 'User',
+                image: currentUser?.image || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&h=150&fit=crop',
+                id: currentUser?.id || 'current-user'
+            },
+            content: postText,
+            timestamp: new Date().toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric'
+            }) + ' ( just now )',
+            likes: 0,
+            comments: []
+        }
+
+        // Add new post to the beginning of the posts array
+        setPosts([newPost, ...posts])
         setPostText('')
     }
 
