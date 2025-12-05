@@ -8,6 +8,7 @@ function Messages() {
     const [showCompose, setShowCompose] = useState(false)
     const [selectedMessage, setSelectedMessage] = useState(null)
     const [newMessage, setNewMessage] = useState({ receiverId: '', subject: '', content: '' })
+    const [activeTab, setActiveTab] = useState('inbox') // 'inbox' or 'sent'
 
     const user = JSON.parse(localStorage.getItem('profile'))
     const userId = user?.result?.id || user?.id
@@ -139,24 +140,45 @@ function Messages() {
             <div className="messages-content">
                 <div className="messages-list">
                     <div className="messages-tabs">
-                        <div className="tab active">Inbox ({inbox.length})</div>
-                        <div className="tab">Sent ({sent.length})</div>
+                        <div
+                            className={`tab ${activeTab === 'inbox' ? 'active' : ''}`}
+                            onClick={() => {
+                                setActiveTab('inbox')
+                                setSelectedMessage(null)
+                            }}
+                        >
+                            Inbox ({inbox.length})
+                        </div>
+                        <div
+                            className={`tab ${activeTab === 'sent' ? 'active' : ''}`}
+                            onClick={() => {
+                                setActiveTab('sent')
+                                setSelectedMessage(null)
+                            }}
+                        >
+                            Sent ({sent.length})
+                        </div>
                     </div>
 
                     {loading ? (
                         <div className="loading">Loading messages...</div>
-                    ) : inbox.length === 0 ? (
-                        <div className="empty-state">No messages in your inbox</div>
+                    ) : (activeTab === 'inbox' ? inbox : sent).length === 0 ? (
+                        <div className="empty-state">
+                            {activeTab === 'inbox' ? 'No messages in your inbox' : 'No sent messages'}
+                        </div>
                     ) : (
                         <div className="message-items">
-                            {inbox.map((message) => (
+                            {(activeTab === 'inbox' ? inbox : sent).map((message) => (
                                 <div
                                     key={message.id}
                                     className={`message-item ${!message.is_read ? 'unread' : ''} ${selectedMessage?.id === message.id ? 'selected' : ''}`}
                                     onClick={() => handleViewMessage(message)}
                                 >
                                     <div className="message-sender">
-                                        {message.sender?.name || 'Unknown'}
+                                        {activeTab === 'inbox'
+                                            ? (message.sender?.name || 'Unknown')
+                                            : (message.receiver?.name || 'Unknown')
+                                        }
                                     </div>
                                     <div className="message-subject">{message.subject}</div>
                                     <div className="message-date">{formatDate(message.created_at)}</div>
