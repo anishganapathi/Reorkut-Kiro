@@ -1,190 +1,124 @@
-# Orkut Clone - A Nostalgic Social Media Recreation
-
-A full-stack clone of the classic Orkut social media platform that was popular in Brazil and India during the late 2000s and early 2010s. This project recreates the iconic interface and features of Orkut using modern React technology.
+# Reorkut | Bringing Back the Social Web's Golden Era
 
 
-## 🎨 Features
-
-This Orkut clone includes the following classic features:
-
-### ✅ Implemented Features
-
-- **Home Page** - Classic Orkut homepage with welcome message and status updates
-- **Friend Suggestions** - Orkut's signature friend recommendation system
-- **Friends List** - View all your friends with online status indicators
-- **Scrapbook** - Leave and view scraps (messages) on profiles
-- **Communities** - Browse, create, and join communities
-- **Photo Albums** - Upload and organize photos in albums
-- **Testimonials** - Write and receive testimonials with ratings
-- **Profile Management** - View and edit profile information
-- **Status Updates** - Share what's on your mind
-- **Online Status** - See who's online, away, busy, or offline
-
-### 🎨 Design Features
-
-- **Authentic Orkut Styling** - Exact replica of the classic blue header and pink logo
-- **Responsive Layout** - Three-column layout (sidebar, main content, friends panel)
-- **Classic Color Scheme** - Original Orkut blue (#5e82c5) and pink (#ed2590)
-- **Unsplash Integration** - High-quality images from Unsplash
-- **Smooth Animations** - Hover effects and transitions
-- **Status Indicators** - Green (online), Orange (away), Red (busy), Gray (offline)
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js (v14 or higher)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd Orkut
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start the development server:
-```bash
-npm run dev
-```
-
-4. Open your browser and navigate to:
-```
-http://localhost:5173
-```
-
-## 📁 Project Structure
-
-```
-Orkut/
-├── src/
-│   ├── components/
-│   │   ├── Header.jsx              # Top navigation bar
-│   │   ├── Sidebar.jsx             # Left sidebar with profile
-│   │   ├── MainContent.jsx         # Main content area
-│   │   ├── RightSidebar.jsx        # Friends list sidebar
-│   │   ├── Scrapbook.jsx           # Scrapbook page
-│   │   ├── Scrapbook.css
-│   │   ├── Communities.jsx         # Communities page
-│   │   ├── Communities.css
-│   │   ├── Photos.jsx              # Photo albums page
-│   │   ├── Photos.css
-│   │   ├── Testimonials.jsx        # Testimonials page
-│   │   └── Testimonials.css
-│   ├── App.jsx                     # Main app component with routing
-│   ├── App.css                     # Main styling
-│   ├── index.css                   # Global styles
-│   └── main.jsx                    # Entry point
-├── package.json
-└── README.md
-```
-
-## 🎯 Usage
-
-### Navigation
-
-- **Home** - View your profile summary and friend suggestions
-- **Profile** - View and edit your profile
-- **Scrapbook** - Read and write scraps
-- **Friends** - Manage your friends list
-- **Communities** - Browse and join communities
-
-### Features Guide
-
-#### Adding Friends
-1. View friend suggestions on the homepage
-2. Click "add as friend" button
-3. Friend will be added to your friends list
-
-#### Creating Communities
-1. Navigate to Communities page
-2. Click "Create Community" button
-3. Fill in community details
-4. Click "Create" to publish
-
-#### Uploading Photos
-1. Go to Photos page
-2. Click "Upload Photos" button
-3. Select an album
-4. Choose photos to upload
-
-#### Writing Testimonials
-1. Visit Testimonials page
-2. Click "Write Testimonial" button
-3. Write your message and rate the person
-4. Submit the testimonial
-
-## 🛠️ Technologies Used
-
-- **React** - Frontend framework
-- **React Router** - Client-side routing
-- **Vite** - Build tool and dev server
-- **CSS3** - Styling with custom properties
-- **Unsplash** - High-quality images
-
-## 🎨 Color Palette
-
-The classic Orkut color scheme:
-
-- **Primary Blue**: `#5e82c5` - Header and buttons
-- **Pink Logo**: `#ed2590` - Orkut branding
-- **Light Blue**: `#d6dff7` - Backgrounds
-- **Border Blue**: `#c3d9ff` - Borders and dividers
-- **Link Blue**: `#0063dc` - Links and interactive elements
-
-## 📱 Responsive Design
-
-The application is responsive and adapts to different screen sizes:
-
-- **Desktop** (1024px+): Full three-column layout
-- **Tablet** (768px-1023px): Simplified layout
-- **Mobile** (<768px): Single column, mobile-optimized
-
-## 🔮 Future Enhancements
-
-Potential features to add:
-
-- [ ] User authentication and login
-- [ ] Backend API integration
-- [ ] Real-time messaging
-- [ ] Community forums
-- [ ] Event creation and management
-- [ ] Video uploads
-- [ ] Advanced search functionality
-- [ ] Privacy settings
-- [ ] Notifications system
-- [ ] Mobile app version
-
-## 📝 License
-
-This project is created for educational and nostalgic purposes only. Orkut was a trademark of Google Inc.
-
-## 🙏 Acknowledgments
-
-- Original Orkut design by Google
-- Images from Unsplash
-- Inspired by the memories of millions of Orkut users from Brazil and India
-
-## 👥 Contributing
-
-Contributions are welcome! Feel free to:
-
-1. Fork the project
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
-
-## 📧 Contact
-
-For questions or feedback, please open an issue on GitHub.
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
+[![Replicate](https://img.shields.io/badge/Replicate-000000?style=for-the-badge&logo=replicate&logoColor=white)](https://replicate.com/)
 
 ---
 
-**Made with ❤️ and nostalgia for the golden age of social media**
+## Executive Summary
+
+Reorkut is a fully functional clone of Orkut, reimagined with today’s technologies. It is a blend of nostalgia and technical exploration, designed to revive the iconic experience of one of the earliest platforms that made the internet feel personal, friendly, and community-driven.
+
+This project includes profiles, scraps, communities, testimonials, friend systems, real-time interactions, customizable themes, and a clean modern UI. It brings back the classic social experience in a fresh, responsive, and scalable form.
+
+---
+
+## Inspiration
+
+Orkut was one of the earliest platforms that made the internet feel personal, friendly, and community-driven. We wanted to revive that iconic experience while showing how modern full-stack engineering can recreate a legacy platform from scratch. This project is not just a clone; it's a tribute to the era of genuine social connection.
+
+---
+
+## What Makes Reorkut Special
+
+*   **Pixel-Perfect Nostalgia**: A responsive UI that faithfully recreates the original Orkut look and feel.
+*   **Modern Core**: Built with React and Node.js for performance and scalability.
+*   **AI-Enhanced**: Integrated with Replicate and Google Gemini for modern features like AI style transfer and content generation.
+*   **Real-Time Interactions**: Seamless updates for scraps and messages.
+
+---
+
+## How we built it
+
+We rebuilt Orkut end-to-end using modern frameworks and best practices.
+
+1.  **Frontend**: A responsive, pixel-perfect UI recreates the original look and feel using **React** and **Vite**.
+2.  **Backend**: A scalable **Node.js** and **Express** backend handles authentication, posts, communities, messaging, and user interactions.
+3.  **Real-time**: Implemented features to ensure seamless updates across the platform.
+4.  **Database**: A clean **Supabase (PostgreSQL)** database structure supports user relationships and content management.
+5.  **AI Integration**: Leveraged **Replicate** for image processing and **Gemini** for text generation.
+
+Every component from profile pages to community discussions was redesigned and re-engineered from scratch.
+
+---
+
+## Architecture
+
+![Architecture Diagram](https://i.postimg.cc/Xqmfb7j2/ARCH-drawio.png)
+
+The system accepts requests via the Client (React App), which communicates with the Node.js/Express Server. The server manages authentication and data via Supabase, handles file storage with Cloudinary/Local storage, and delegates AI tasks to Replicate/Gemini APIs.
+
+---
+
+## Core Steps: Setup & Installation
+
+Clone the Reorkut repo from GitHub:
+
+```bash
+git clone https://github.com/anishganapathi/reorkut.git
+cd reorkut
+```
+
+### 1. Environment Setup
+
+Create a `.env` file in the root directory and add the following keys:
+
+```env
+# AI & Media
+REPLICATE_API_TOKEN=your_replicate_token
+GEMINI_API_KEY=your_gemini_key
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+# Database (Supabase)
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+### 2. Database Setup
+
+1.  Create a new project on **Supabase**.
+2.  Navigate to the **SQL Editor** in your Supabase dashboard.
+3.  Copy the contents of `DATABASE.sql` from this repository.
+4.  Paste it into the SQL Editor and run it to set up all tables, RLS policies, and storage buckets.
+
+### 3. Server Setup
+
+The Node.js server handles AI processing and file uploads.
+
+1.  Install server dependencies:
+    ```bash
+    npm install
+    ```
+2.  Start the backend server:
+    ```bash
+    node server.js
+    ```
+    *The server will run on http://localhost:5000*
+
+### 4. Frontend App Setup
+
+The configuration is built with Vite for fast development.
+
+1.  Open a new terminal window.
+2.  Run the development server:
+    ```bash
+    npm run dev
+    ```
+3.  Open http://localhost:5173 to view the app.
+
+---
+
+## License
+
+MIT License - Open-sourced project.
+
+## Acknowledgments
+
+*   **Google**: For the original Orkut platform inspiration.
+*   **Open Source Community**: For the tools and libraries that made this possible.
