@@ -31,6 +31,9 @@ CREATE TABLE IF NOT EXISTS profiles (
   created_at timestamptz DEFAULT now() NOT NULL
 );
 
+-- Ensure interests column exists (migration support)
+ALTER TABLE profiles ADD COLUMN IF NOT EXISTS interests text;
+
 -- Create scraps table
 CREATE TABLE IF NOT EXISTS scraps (
   id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
