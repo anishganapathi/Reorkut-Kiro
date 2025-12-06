@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Accessibility Checker for Components",
+  "description": "When a component file is saved, automatically check for accessibility issues and suggest improvements such as ARIA labels, semantic HTML, keyboard navigation, color contrast, and screen reader compatibility.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/components/*.jsx"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Review the saved component file for accessibility issues and suggest improvements. Check for:\n- Missing or improper ARIA labels and roles\n- Semantic HTML usage (proper heading hierarchy, landmarks, etc.)\n- Keyboard navigation support (tab order, focus management, keyboard event handlers)\n- Color contrast issues\n- Alt text for images\n- Form label associations\n- Interactive elements accessibility\n- Screen reader compatibility\n- Focus indicators\n\nProvide specific, actionable suggestions for improving accessibility in this component."
+  }
+}

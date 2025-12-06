@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "name": "Auto Documentation Updater",
+  "description": "Automatically updates README.md and documentation files whenever new features are added (like scrapbook, testimonials, communities) or when component files are created/modified (profile pages, friend lists, etc.). Keeps component documentation in sync as the project evolves.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/components/*.jsx",
+      "README.md",
+      "PROJECT_ABSTRACT.md",
+      ".kiro/**/*.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A component or documentation file has been modified. Please analyze the changes and:\n\n1. If a new component was added in src/components/, update the README.md to document this new feature\n2. If an existing component was significantly modified, check if the README.md or related documentation needs updates to reflect the changes\n3. Ensure the component documentation accurately describes its purpose, props, and usage\n4. Update any feature lists or architecture documentation to include new functionality\n5. Keep the documentation consistent with the actual implementation\n\nReview the modified file and determine what documentation updates are needed. Then update the appropriate documentation files (README.md, PROJECT_ABSTRACT.md, or files in .kiro/) to keep them in sync with the codebase."
+  }
+}

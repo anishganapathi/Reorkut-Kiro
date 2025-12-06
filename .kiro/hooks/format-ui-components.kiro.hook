@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Format UI Components",
+  "description": "Automatically formats and standardizes UI components when edited, ensuring consistent structure, proper React patterns, and Orkut design system compliance",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/components/*.jsx"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A UI component has been edited. Review and format the component to ensure:\n1. Proper React functional component structure with hooks\n2. Consistent import order (React, external libs, internal modules, CSS)\n3. Props destructuring at the top\n4. State declarations grouped together\n5. useEffect hooks properly organized\n6. Event handlers defined before return\n7. Proper JSX formatting and indentation\n8. Orkut color scheme compliance (#5e82c5, #ed2590, etc.)\n9. Responsive design considerations\n10. Accessibility attributes (aria-labels, alt text)\nProvide the formatted component code with any necessary improvements."
+  }
+}
