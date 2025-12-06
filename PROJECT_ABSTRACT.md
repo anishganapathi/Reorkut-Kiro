@@ -62,7 +62,7 @@ Every component from profile pages to community discussions was redesigned and r
 
 ## Architecture
 
-![Architecture Diagram](https://i.postimg.cc/PrXKzN9t/Architecture.png)
+![Architecture Diagram](https://i.postimg.cc/Xqmfb7j2/ARCH-drawio.png)
 
 The system accepts requests via the Client (React App), which communicates with the Node.js/Express Server. The server manages authentication and data via Supabase, handles file storage with Cloudinary/Local storage, and delegates AI tasks to Replicate/Gemini APIs.
 
